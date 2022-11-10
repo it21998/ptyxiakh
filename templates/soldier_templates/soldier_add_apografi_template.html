@@ -1,0 +1,437 @@
+{% load static %}
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+      <script>
+        function validateForm() {
+   var x = document.forms["myForm"]["father_name"].value;
+   var y = document.forms["myForm"]["mother_name"].value;
+   var z = document.forms["myForm"]["id_number"].value
+   var a = document.forms["myForm"]["AFM"].value
+   var b = document.forms["myForm"]["nomos"].value
+   var c = document.forms["myForm"]["perioxh"].value
+   var d = document.forms["myForm"]["odos"].value
+   var w = document.forms["myForm"]["formFile"].value
+   if (x == "" || x == null) {
+     alert("Παρακαλώ πληκτρολογήστε το πατρώνυμο σας!");
+     return false;
+   } else if (y == "" || y == null) {
+     alert("Παρακαλώ πληκτρολογήστε το μητρώνυμο σας!");
+     return false;
+   } else if (z == "" || z == null) {
+     alert("Παρακαλώ πληκτρολογήστε τον αριθμό της ταυτότητας σας!");
+     return false;
+   } else if (a == "" || a == null) {
+     alert("Παρακαλώ πληκτρολογήστε τον ΑΦΜ σας!");
+     return false;
+    } else if (b == "" || b == null) {
+     alert("Παρακαλώ πληκτρολογήστε τον νομό που βρίσκεται η μόνιμη κατοικία σας!");
+     return false;
+    } else if (c == "" || c == null) {
+     alert("Παρακαλώ πληκτρολογήστε τη περιοχή που βρίσκεται η μόνιμη κατοικία σας!");
+     return false;
+    } else if (d == "" || d == null) {
+     alert("Παρακαλώ πληκτρολογήστε την οδό που βρίσκεται η μόνιμη κατοικία σας!");
+     return false;
+   } else if (w == "" || w == null) {
+     alert("Παρακαλώ επισυνάψτε το ηλεκτρονικό έγγραφο!");
+     return false;
+   }
+ }
+         
+         </script>
+ 
+
+
+
+
+
+
+
+
+
+    	<!-- meta charec set -->
+        <meta charset="utf-8">
+		<!-- Always force latest IE rendering engine or request Chrome Frame -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Page Title -->
+        <title>Stratologia</title>		
+		<!-- Meta Description -->
+        <meta name="description" content="Blue One Page Creative HTML5 Template">
+        <meta name="keywords" content="one page, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
+        <meta name="author" content="Muhammad Morshed">
+		<!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap core CSS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+		<!-- CSS
+		================================================== -->
+		<!-- Fontawesome Icon font -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/font-awesome.min.css" %}">
+		<!-- Twitter Bootstrap css -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/bootstrap.min.css" %}">
+		<!-- jquery.fancybox  -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/jquery.fancybox.css" %}">
+		<!-- animate -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/animate.css" %}">
+		<!-- Main Stylesheet -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/main.css"  %}">
+		<!-- media-queries -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/media-queries.css" %}">
+		<!-- Modernizer Script for old Browsers -->
+        <script src="{%static "brandi_custom_page/js/modernizr-2.6.2.min.js"%}"></script>
+
+    <!-- Custom styles for this template -->
+  </head>
+  <body >
+
+      
+
+    <div id="preloader">
+			<img src="{% static "brandi_custom_page/img/preloader.gif" %}" alt="Preloader">
+		</div>
+		<!-- end preloader -->
+
+        <!-- 
+        Fixed Navigation
+        ==================================== -->
+      <header  class="navbar-fixed-top navbar" style="background-color:rgb(20, 179, 152);">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-bars fa-2x"></i>
+                    </button>
+					<!-- /responsive nav button -->
+					
+					<!-- logo -->
+                    <a class="navbar-brand" href="{% url 'soldier_home' %}">
+						<h3 id="logo" style="color: rgb(247, 247, 247); line-height: 47px;">
+							<img src="https://images.vexels.com/media/users/3/194978/isolated/lists/4e5f08e2a984b379c5d0d7ba1b77489a-general-major-military-rank-icon.png" style="height: 50px;" alt="Stratologia">Stratologia
+						</h3>
+					</a>
+					<!-- /logo -->
+                </div>
+
+				<!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" >
+                    <ul id="nav" class="nav navbar-nav">
+						<li class="image"> <img src="{% static "brandi_custom_page/img/user.png" %}" width="30" height="30" class="img-circle elevation-6" style=margin-top:10px; alt="User Image"></li>
+						<li class="info"><a class="d-block" style="color: rgb(255, 255, 255);">{{ user.email }}</a></li>
+                         
+                    </ul>
+                    <div style="margin-left: 100px; margin-top: 17px;">
+                      <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/soldier_home">Home</a>
+                      </div>
+                    <div style="margin-left: 185px; margin-top: -21px;">
+                      <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/soldier_home#work">Υπηρεσίες</a>
+                      </div>
+
+					<div style="margin-left: 270px; margin-top: -21px;">
+					<a class="text-info" style="color: rgb(255, 255, 255);" href="{% url 'keycloak_logout' %}">Logout</a>
+				</div>
+
+
+
+                </nav>
+				<!-- /main nav -->
+				
+            </div>
+        </header>
+
+
+
+
+
+
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header" style="height: 55px;">
+                <h3 class="card-title"  style="color: black;">Οι Προσωπικές σας αιτήσεις στράτευσης</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+
+                   
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th style="color: black;">ID</th>
+                      <th style="color: black;">Ονοματεπώνυμο</th>
+                      <th style="color: black;">Email</th>
+                      <th style="color: black;">Ηλικία</th>
+                      <th style="color: black;" >Κατάταξη</th>
+                      <th style="color: black;">Μορφ. επίπεδο</th>
+                      <th style="color: black;">Τηλ. επικοινωνίας</th>
+                      <th style="color: black;" >Status</th>
+                      <th style="color: black;">Date Created</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for application in applications %}
+                  {% if application.email == user.email %}
+
+                    <tr>
+                      <td style="color: black;">{{ application.id }}</td>
+                      <td style="color: black;">{{ application.first_name }} {{application.last_name}}</td>
+                      <td style="color: black;">{{ application.email }}</td>
+                      <td style="color: black;">{{ application.age }}</td>
+                      <td style="color: black;">{{ application.katatajh }}</td>
+                      <td style="color: black;">{{ application.education_level }}</td>
+                      <td style="color: black;">{{ application.communication }}</td>
+                      <td style="background-color:rgb(20, 179, 152);color: black;" >{{ application.status }}</td>
+                      <td style="color: black;">{{ application.created_at }}</td>
+                    </tr>
+                    {% endif %}
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+     
+    </section>
+
+    <section class="content" style="margin-top: -100px;">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header" style="height: 50px">
+                <h3 class="card-title" style="color: black;">Έγγραφο Απογραφής</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <div id = 'nope' class="jumbotron">
+                <p class="lead" style="color: black;">Δυστυχώς δεν υπάρχει κάποια εγκεκριμένη αίτηση στράτευσης διαθέσιμη προς απογραφή.</p>
+                <p class="lead" style="color: black;">Για την συμπλήρωση της αίτησης της απογραφής σας απαραίτητη προυπόθεση είναι η πραγματοποίηση της αίτησης αλλά και η αποδοχή της  από τους υπεύθυνους!</p>
+              </div>
+              {% for application in applications|slice:"1" %}
+              {% if application.status == "pending" %}
+              <script>
+                var div = document.getElementById('nope');
+                div.remove();
+              </script>
+              <form role="form" name="myForm" action="/add_apografi_save" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                  {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label style="color: black;">Όνομα</label>
+                    <input type="text" class="form-control"  readonly=readonly value="{{application.first_name}}" name="first_name">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Επώνυμο</label>
+                    <input type="text" class="form-control"  readonly=readonly value={{application.last_name}} name="last_name">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Email</label>
+                    <input type="text" readonly="readonly"  class="form-control" value="{{user.email}}" name="email">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Πατρώνυμο</label>
+                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε το παρώνυμο σας" name="father_name">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Μητρώνυμο</label>
+                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε το μητρώνυμο σας" name="mother_name">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Αριθμός Ταυτότητας</label>
+                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε τον αριθμό της ταυτότητας σας" name="id_number">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">ΑΦΜ</label>
+                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε τον ΑΦΜ σας" name="AFM">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Νομός μόνιμης κατοικοίας</label>
+                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε το νομό της μόνιμης κατοικοίας σας" name="nomos">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Περιοχή μόνιμης κατοικοίας</label>
+                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε τη περιοχή της μόνιμης κατοικοίας σας" name="perioxh">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Οδός μόνιμης κατοικοίας</label>
+                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε την οδό της μόνιμης κατοικίας σας" name="odos">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">ID αίτησης</label>
+                    <input type="text" readonly="readonly" class="form-control" value="{{application.id}}" name="aithsh_id">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Ανάστημα (σε εκατοστά)</label>
+                    <input type="number" class="form-control" value="170" min="140" max="250" name="height">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Βάρος</label>
+                    <input type="number" class="form-control" value="60" min="40" max="150" name="weight">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Επιλογή κατάταξης</label>
+                    <input type="text" class="form-control"  readonly="readonly" value="{{application.katatajh}}" name="katatajh">
+                   </div>
+                   <div class="form-group">
+                    <label style="color: black;">Μορφωτικό επίπεδο</label>
+                    <input type="text" class="form-control"  readonly="readonly" value="{{application.education_level}}" name="education_level">
+                   </div>
+                   <div class="form-group">
+                    <label style="color: black;">Τηλέφωνο επικοινωνίας</label>
+                    <input type="text" class="form-control"  readonly="readonly" value="{{application.communication}}" name="communication">
+                   </div>
+                
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label" style="color: black;">Επιλέξτε το ηλεκτρονικό έγγραφο δικαιολόγησης της φορολογικής σας δήλωσης</label>
+                    <input class="form-control" type="file" name="formFile" style="height: 35px;">
+                  </div>
+                      <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">Προσθήκη έγγραφου απογραφής</button>
+                </div>
+              </form>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <script src="{% static "brandi_custom_page/js/jquery-1.11.1.min.js" %}"></script>
+		<!-- Single Page Nav -->
+        <script src="{% static "brandi_custom_page/js/jquery.singlePageNav.min.js" %}"></script>
+		<!-- Twitter Bootstrap -->
+        <script src="{% static "brandi_custom_page/js/bootstrap.min.js" %}"></script>
+		<!-- jquery.fancybox.pack -->
+        <script src="{% static "brandi_custom_page/js/jquery.fancybox.pack.js" %}"></script>
+		<!-- jquery.mixitup.min -->
+        <script src="{% static "brandi_custom_page/js/jquery.mixitup.min.js" %}"></script>
+		<!-- jquery.parallax -->
+        <script src="{% static "brandi_custom_page/js/jquery.parallax-1.1.3.js" %}"></script>
+		<!-- jquery.countTo -->
+        <script src="{% static "brandi_custom_page/js/jquery-countTo.js" %}"></script>
+		<!-- jquery.appear -->
+        <script src="{% static "brandi_custom_page/js/jquery.appear.js" %}"></script>
+		<!-- Contact form validation -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+		<!-- Google Map -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<!-- jquery easing -->
+        <script src="{% static "brandi_custom_page/js/jquery.easing.min.js" %}"></script>
+		<!-- jquery easing -->
+        <script src="{% static "brandi_custom_page/js/wow.min.js" %}"></script>
+		<script>
+			var wow = new WOW ({
+				boxClass:     'wow',      // animated element css class (default is wow)
+				animateClass: 'animated', // animation css class (default is animated)
+				offset:       120,          // distance to the element when triggering the animation (default is 0)
+				mobile:       false,       // trigger animations on mobile devices (default is true)
+				live:         true        // act on asynchronously loaded content (default is true)
+			  }
+			);
+			wow.init();
+		</script> 
+		<!-- Custom Functions -->
+        <script src="{% static "brandi_custom_page/js/custom.js" %}"></script>
+		
+		<script type="text/javascript">
+			$(function(){
+				/* ========================================================================= */
+				/*	Contact Form
+				/* ========================================================================= */
+				
+				$('#contact-form').validate({
+					rules: {
+						name: {
+							required: true,
+							minlength: 2
+						},
+						email: {
+							required: true,
+							email: true
+						},
+						message: {
+							required: true
+						}
+					},
+					messages: {
+						name: {
+							required: "come on, you have a name don't you?",
+							minlength: "your name must consist of at least 2 characters"
+						},
+						email: {
+							required: "no email, no message"
+						},
+						message: {
+							required: "um...yea, you have to write something to send this form.",
+							minlength: "thats all? really?"
+						}
+					},
+					submitHandler: function(form) {
+						$(form).ajaxSubmit({
+							type:"POST",
+							data: $(form).serialize(),
+							url:"process.php",
+							success: function() {
+								$('#contact-form :input').attr('disabled', 'disabled');
+								$('#contact-form').fadeTo( "slow", 0.15, function() {
+									$(this).find(':input').attr('disabled', 'disabled');
+									$(this).find('label').css('cursor','default');
+									$('#success').fadeIn();
+								});
+							},
+							error: function() {
+								$('#contact-form').fadeTo( "slow", 0.15, function() {
+									$('#error').fadeIn();
+								});
+							}
+						});
+					}
+				});
+			});
+		</script>
+    <!-- /.content -->
+{% endif %}

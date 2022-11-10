@@ -1,0 +1,10 @@
+python-keycloak-client>=0.2.2
+Django>=1.11
+
+[dev]
+bumpversion==0.5.3
+twine
+
+[doc]
+Sphinx==1.4.4
+sphinx-autobuild==0.6.0
