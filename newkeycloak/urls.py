@@ -41,5 +41,16 @@ urlpatterns = [
     path('check_katatajh', SoldierViews.check_katatajh, name='check_katatajh'),
     path('check_myaithseis', SoldierViews.check_myaithseis, name='check_myaithseis'),
     path('staff_home', StaffViews.staff_home, name="staff_home"),
-
+    path('check_applications', StaffViews.check_applications, name="check_applications"),
+    path('edit_application/<str:application_id>', StaffViews.edit_application,name="edit_application"),
+    path('edit_application_save', StaffViews.edit_application_save,name="edit_application_save"),
+    path('check_anaboles', StaffViews.check_anaboles, name="check_anaboles"),
+    path('edit_anabolh/<str:anabolh_id>', StaffViews.edit_anabolh,name="edit_anabolh"),
+    path('edit_anabolh_save', StaffViews.edit_anabolh_save,name="edit_anabolh_save"),
+    path('check_apografes', StaffViews.check_apografes, name="check_apografes"),
+    path('edit_apografh/<str:apografh_id>', StaffViews.edit_apografh,name="edit_apografh"),
+    path('edit_apografh_save', StaffViews.edit_apografh_save,name="edit_apografh_save"),
+    path('check_sxoles', StaffViews.check_sxoles, name="check_sxoles"),
+    path('edit_sxolh/<str:sxolh_id>', StaffViews.edit_sxolh,name="edit_sxolh"),
+    path('edit_sxolh_save', StaffViews.edit_sxolh_save,name="edit_sxolh_save"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

@@ -54,6 +54,7 @@ class Apografh(models.Model):
     education_level=models.CharField(max_length=255)
     communication=models.CharField(max_length=255)
     formFile = models.FileField(default='0000000')
+    status=models.CharField(max_length=255)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
     objects=models.Manager()      

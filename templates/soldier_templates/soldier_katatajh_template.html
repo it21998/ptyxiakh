@@ -182,8 +182,8 @@
                 <p class="lead" style="color: black;">Δυστυχώς δεν υπάρχει κάποια εγκεκριμένη αίτηση στράτευσης διαθέσιμη ώστε να λάβετε πληροφορίες για την καταταξή σας.</p>
                 <p class="lead" style="color: black;">Για την προβολή της κατάταξη σας απαραίτητη προυπόθεση είναι η πραγματοποίηση της αίτησης αλλά και η αποδοχή της  από τους υπεύθυνους!</p>
               </div>
-              {% for application in applications|slice:"1" %}
-              {% if application.status == "pending" %}
+              {% for application in applications %}
+              {% if application.status == "Pass" %}
               <script>
                 var div = document.getElementById('nope');
                 div.remove();

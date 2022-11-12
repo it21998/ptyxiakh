@@ -13,166 +13,138 @@ def staff_home(request):
     return render(request,"staff_templates/base_template.html")
 
 
-def add_application(request):
-        return render(request,"soldier_templates/soldier_add_application_template.html")
+def check_applications(request):
+        applications=Aithsh.objects.filter(status="pending")
+        return render(request,"staff_templates/staff_manage_applications.html",{"applications":applications})
 
 
 
-def add_application_save(request):
+def edit_application(request,application_id):
+    applications=Aithsh.objects.get(id=application_id)
+    return render(request,"staff_templates/edit_application_template.html",{"applications":applications,"id":application_id})
+
+
+
+def edit_application_save(request):
     if request.method!="POST":
-        print(request.method)
-        return HttpResponse("Method Not Allowed")
+        return HttpResponse("<h2>Method Not Allowed</h2>")
     else:
-        first_name=request.POST.get("first_name")
-        last_name=request.POST.get("last_name")
-        email=request.POST.get("email")
-        age=request.POST.get("age")
-        formFile=request.FILES["formFile"]
-        katatajh=request.POST.get("katatajh")
-        education_level=request.POST.get("education_level")
-        communication=request.POST.get("communication")
-        status="pending"
-        nomos_stratopedou=0
-        number_stratopedou=0
-        military_id=0
+        application_id=request.POST.get("application_id")
         try:
-            application=Aithsh(first_name=first_name,last_name=last_name,email=email,age=age,formFile=formFile,katatajh=katatajh,education_level=education_level,communication=communication,status=status,nomos_stratopedou=nomos_stratopedou,number_stratopedou=number_stratopedou,military_id=military_id)
+            application=Aithsh.objects.get(id=application_id)
+            application.status=request.POST.get("status")
+            application.nomos_stratopedou=request.POST.get("nomos_stratopedou")
+            application.number_stratopedou=request.POST.get("number_stratopedou")
+            application.military_id=request.POST.get("military_id")
             application.save()
-          
-            messages.success(request,"Successfully Added Application")
-            return HttpResponseRedirect(reverse("add_application"))
-        except Exception as e:
-            print(e)
-            messages.error(request,"Failed to Add Application")
-            return HttpResponseRedirect(reverse("add_application"))
+            
+            messages.success(request,"Successfully Edited Application")
+            return HttpResponseRedirect(reverse("edit_application",kwargs={"application_id":application_id}))
+        except:
+            messages.error(request,"Failed to Edit Application")
+            return HttpResponseRedirect(reverse("edit_application",kwargs={"application_id":application_id}))
+
+
+
+def check_anaboles(request):
+        anaboles=Diakoph.objects.filter(status="pending")
+        return render(request,"staff_templates/staff_manage_anaboles.html",{"anaboles":anaboles})
+
+
+
+def edit_anabolh(request,anabolh_id):
+    anaboles=Diakoph.objects.get(id=anabolh_id)
+    return render(request,"staff_templates/edit_anabolh_template.html",{"anaboles":anaboles,"id":anabolh_id})
+
+
+
+def edit_anabolh_save(request):
+    if request.method!="POST":
+        return HttpResponse("<h2>Method Not Allowed</h2>")
+    else:
+        application_id=request.POST.get("aithsh_id")
+        anabolh_id=request.POST.get("anabolh_id")
+        try:
+            
+            anabolh=Diakoph.objects.get(id=anabolh_id)
+            anabolh.status=request.POST.get("status")
+            anabolh.save()
+            if(request.POST.get("status")=="Pass"):
+                application=Aithsh.objects.get(id=application_id)
+                application.status="Reject"
+                application.save()
             
 
+            messages.success(request,"Successfully Edited Application")
+            return HttpResponseRedirect(reverse("edit_anabolh",kwargs={"anabolh_id":anabolh_id}))
+        except:
+            messages.error(request,"Failed to Edit Application")
+            return HttpResponseRedirect(reverse("edit_anabolh",kwargs={"anabolh_id":anabolh_id}))
 
+
+
+def check_apografes(request):
+        apografes=Apografh.objects.all()
+        return render(request,"staff_templates/staff_manage_apografes.html",{"apografes":apografes})
+
+
+
+def edit_apografh(request,apografh_id):
+    apografes=Apografh.objects.get(id=apografh_id)
+    return render(request,"staff_templates/edit_apografh_template.html",{"apografes":apografes,"id":apografh_id})
+
+
+def edit_apografh_save(request):
+    if request.method!="POST":
+        return HttpResponse("<h2>Method Not Allowed</h2>")
+    else:
+        apografh_id=request.POST.get("apografh_id")
+        try:
             
-def add_diakoph(request):
-    
-    applications=Aithsh.objects.all()
-    return render(request,"soldier_templates/soldier_add_diakoph_template.html",{"applications":applications})
-
-
-
-
-
-def add_diakoph_save(request):
-    if request.method!="POST":
-        print(request.method)
-        return HttpResponse("Method Not Allowed")
-    else:
-        first_name=request.POST.get("first_name")
-        last_name=request.POST.get("last_name")
-        email=request.POST.get("email")
-        aithsh_id=request.POST.get("aithsh_id")
-        reason=request.POST.get("reason")
-        formFile=request.FILES["formFile"]
-        status="pending"
-       
-      
-        try:
-            diakoph=Diakoph(first_name=first_name,last_name=last_name,email=email,aithsh_id=aithsh_id,reason=reason,formFile=formFile,status=status)
-            diakoph.save()
-          
-            messages.success(request,"Successfully Added Anavolh")
-            return HttpResponseRedirect(reverse("add_diakoph"))
-        except Exception as e:
-            print(e)
-            messages.error(request,"Failed to Add Anavolh")
-            return HttpResponseRedirect(reverse("add_diakoph"))
-
-
-
-def add_apografi(request):
-    applications=Aithsh.objects.all()
-    return render(request,"soldier_templates/soldier_add_apografi_template.html",{"applications":applications})
-
-
-
-def add_apografi_save(request):
-    if request.method!="POST":
-        print(request.method)
-        return HttpResponse("Method Not Allowed")
-    else:
-        first_name=request.POST.get("first_name")
-        last_name=request.POST.get("last_name")
-        email=request.POST.get("email")
-        father_name=request.POST.get("father_name")
-        mother_name=request.POST.get("mother_name")
-        id_number=request.POST.get("id_number")
-        AFM=request.POST.get("AFM")
-        nomos=request.POST.get("nomos")
-        perioxh=request.POST.get("perioxh")
-        odos=request.POST.get("odos")
-        aithsh_id=request.POST.get("aithsh_id")
-        height=request.POST.get("height")
-        weight=request.POST.get("weight")
-        katatajh=request.POST.get("katatajh")
-        education_level=request.POST.get("education_level")
-        communication=request.POST.get("communication")
-        formFile=request.FILES["formFile"]
+            apografh=Apografh.objects.get(id=apografh_id)
+            if(request.POST.get("status")=="Checked"):
+                apografh.status=request.POST.get("status")
+            else :
+                apografh.status="Unchecked"
+            
+            
+            apografh.save()
+            
         
-      
-        try:
-            apografi=Apografh(first_name=first_name,last_name=last_name,email=email,father_name=father_name,mother_name=mother_name,id_number=id_number,AFM=AFM,nomos=nomos,perioxh=perioxh,odos=odos,aithsh_id=aithsh_id,height=height,weight=weight,katatajh=katatajh,education_level=education_level,communication=communication,formFile=formFile)
-            apografi.save()
-          
-            messages.success(request,"Successfully Added Apografi")
-            return HttpResponseRedirect(reverse("add_apografi"))
-        except Exception as e:
-            print(e)
-            messages.error(request,"Failed to Add Apografi")
-            return HttpResponseRedirect(reverse("add_apografi"))
+            messages.success(request,"Successfully Edited Application")
+            return HttpResponseRedirect(reverse("edit_apografh",kwargs={"apografh_id":apografh_id}))
+        except:
+            messages.error(request,"Failed to Edit Application")
+            return HttpResponseRedirect(reverse("edit_apografh",kwargs={"apografh_id":apografh_id}))
 
 
 
 
-
-def add_sxolh(request):
-        return render(request,"soldier_templates/soldier_add_sxolh_template.html")
-
-
+def check_sxoles(request):
+        sxoles=Sxolh.objects.filter(status="pending")
+        return render(request,"staff_templates/staff_manage_sxoles.html",{"sxoles":sxoles})
 
 
-def add_sxolh_save(request):
+
+def edit_sxolh(request,sxolh_id):
+    sxoles=Sxolh.objects.get(id=sxolh_id)
+    return render(request,"staff_templates/edit_sxolh_template.html",{"sxoles":sxoles,"id":sxolh_id})
+
+
+
+def edit_sxolh_save(request):
     if request.method!="POST":
-        print(request.method)
-        return HttpResponse("Method Not Allowed")
+        return HttpResponse("<h2>Method Not Allowed</h2>")
     else:
-        first_name=request.POST.get("first_name")
-        last_name=request.POST.get("last_name")
-        email=request.POST.get("email")
-        age=request.POST.get("age")
-        AFM=request.POST.get("AFM")
-        AMKA=request.POST.get("AMKA")
-        communication=request.POST.get("communication")
-        mysxolh=request.POST.get("mysxolh")
-        formFile=request.FILES["formFile"]
-        status="pending"
-   
-        
+        sxolh_id=request.POST.get("sxolh_id")
         try:
-            sxolh=Sxolh(first_name=first_name,last_name=last_name,email=email,age=age,AFM=AFM,AMKA=AMKA,communication=communication,mysxolh=mysxolh,formFile=formFile,status=status)
+            sxolh=Sxolh.objects.get(id=sxolh_id)
+            sxolh.status=request.POST.get("status")
             sxolh.save()
-          
-            messages.success(request,"Successfully Added Application")
-            return HttpResponseRedirect(reverse("add_sxolh"))
-        except Exception as e:
-            print(e)
-            messages.error(request,"Failed to Add Application")
-            return HttpResponseRedirect(reverse("add_sxolh"))
+            
+            messages.success(request,"Successfully Edited Application")
+            return HttpResponseRedirect(reverse("edit_sxolh",kwargs={"sxolh_id":sxolh_id}))
+        except:
+            messages.error(request,"Failed to Edit Application")
+            return HttpResponseRedirect(reverse("edit_sxolh",kwargs={"sxolh_id":sxolh_id}))
 
-
-def check_katatajh(request):
-        applications=Aithsh.objects.all()
-        return render(request,"soldier_templates/soldier_katatajh_template.html",{"applications":applications})
-
-
-
-def check_myaithseis(request):
-        applications=Aithsh.objects.all()
-        anaboles=Diakoph.objects.all()
-        sxoles=Sxolh.objects.all()
-        return render(request,"soldier_templates/soldier_manage_applications_template.html",context={'applications':applications,'anaboles':anaboles,'sxoles':sxoles})

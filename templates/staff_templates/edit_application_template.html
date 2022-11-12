@@ -1,49 +1,212 @@
-{% extends 'staff_template/base_template.html' %}
-{% block page_title %}
-Edit Application |  Application ID : {{ applications.id }}
-{% endblock page_title %}
-{% block main_content %}
+{% load static %}
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+      <script type='text/javascript'>
+        function myFunction() {
+         var optionValue = document.getElementById("nomos_stratopedou").value;
+         document.getElementById("number_stratopedou").value = Math.floor((Math.random() * 400) + 100);
+         document.getElementById("military_id").value = 1000 + Math.floor('{{applications.id}}') ;
+
+        }
+        </script>
+
+   
+    	<!-- meta charec set -->
+        <meta charset="utf-8">
+		<!-- Always force latest IE rendering engine or request Chrome Frame -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Page Title -->
+        <title>Stratologia</title>		
+		<!-- Meta Description -->
+        <meta name="description" content="Blue One Page Creative HTML5 Template">
+        <meta name="keywords" content="one page, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
+        <meta name="author" content="Muhammad Morshed">
+		<!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap core CSS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+		<!-- CSS
+		================================================== -->
+		<!-- Fontawesome Icon font -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/font-awesome.min.css" %}">
+		<!-- Twitter Bootstrap css -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/bootstrap.min.css" %}">
+		<!-- jquery.fancybox  -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/jquery.fancybox.css" %}">
+		<!-- animate -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/animate.css" %}">
+		<!-- Main Stylesheet -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/main.css"  %}">
+		<!-- media-queries -->
+        <link rel="stylesheet" href="{%static "brandi_custom_page/css/media-queries.css" %}">
+		<!-- Modernizer Script for old Browsers -->
+        <script src="{%static "brandi_custom_page/js/modernizr-2.6.2.min.js"%}"></script>
+
+    <!-- Custom styles for this template -->
+  </head>
+  <body >
+
+      
+
+    <div id="preloader">
+			<img src="{% static "brandi_custom_page/img/preloader.gif" %}" alt="Preloader">
+		</div>
+		<!-- end preloader -->
+
+        <!-- 
+        Fixed Navigation
+        ==================================== -->
+      <header  class="navbar-fixed-top navbar" style="background-color:rgb(20, 179, 152);">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-bars fa-2x"></i>
+                    </button>
+					<!-- /responsive nav button -->
+					
+					<!-- logo -->
+                    <a class="navbar-brand" href="{% url 'staff_home' %}">
+						<h3 id="logo" style="color: rgb(247, 247, 247); line-height: 47px;">
+							<img src="https://images.vexels.com/media/users/3/194978/isolated/lists/4e5f08e2a984b379c5d0d7ba1b77489a-general-major-military-rank-icon.png" style="height: 50px;" alt="Stratologia">Stratologia
+						</h3>
+					</a>
+					<!-- /logo -->
+                </div>
+
+				<!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" >
+                    <ul id="nav" class="nav navbar-nav">
+						<li class="image"> <img src="{% static "brandi_custom_page/img/user.png" %}" width="30" height="30" class="img-circle elevation-6" style=margin-top:10px; alt="User Image"></li>
+						<li class="info"><a class="d-block" style="color: rgb(255, 255, 255);">{{ user.email }}</a></li>
+                         
+                    </ul>
+                    <div style="margin-left: 100px; margin-top: 17px;">
+                      <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/staff_home">Home</a>
+                      </div>
+                    <div style="margin-left: 185px; margin-top: -21px;">
+                      <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/staff_home">Staff</a>
+                      </div>
+
+					<div style="margin-left: 240px; margin-top: -21px;">
+					<a class="text-info" style="color: rgb(255, 255, 255);" href="{% url 'keycloak_logout' %}">Logout</a>
+				</div>
+
+
+
+                </nav>
+				<!-- /main nav -->
+				
+            </div>
+        </header>
+
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="container">
           <div class="row">
               <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Edit Course</h3>
+              <div class="card-header" style="height: 50px">
+                <h3 class="card-title" style="color: rgb(0, 0, 0);">Επεξεργασία αίτησης || Αίτηση: {{applications.id}}</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/edit_application_save" method="post">
+              <form role="form" name="myForm" action="/edit_application_save" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
-                    <label>Studies</label>
-                    <input type="text" class="form-control" name="studies"  value="{{ applications.studies}}" readonly="readonly">
+                    <label style="color: rgb(0, 0, 0);">Όνομα</label>
+                    <input type="text" class="form-control" readonly="readonly" value={{applications.first_name}} name="first_name">
                     <input type="hidden" class="form-control" name="application_id"  value="{{ applications.id }}">  
-                </div>
-                  <div class="form-group">
-                    <label>Experience </label>
-                    <input type="text" class="form-control" name="experience" value="{{applications.experience }}" readonly="readonly">
+
                   </div>
                   <div class="form-group">
-                    <label>Scholarships </label>
-                    <input type="text" class="form-control" name="scholarships" value="{{applications.scholarships }}" readonly="readonly">
+                    <label style="color: rgb(0, 0, 0);">Επώνυμο</label>
+                    <input type="text" class="form-control" readonly="readonly" value="{{applications.last_name}}" name="last_name">
                   </div>
                   <div class="form-group">
-                    <label>Communication </label>
-                    <input type="text" class="form-control" name="communication" value="{{applications.communication }}" readonly="readonly">
+                    <label style="color: rgb(0, 0, 0);" >Email</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{applications.email}}" name="email">
                   </div>
                   <div class="form-group">
-                    <label>Status</label>
-                    <select class="form-control" name="status">
-                      <option>Pending</option>
-                      <option>Pass</option>
-                      <option>Reject</option>
-                    </select>
+                    <label style="color: rgb(0, 0, 0);" >Ηλικία</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{applications.age}}" name="age">
                   </div>
 
+                  <div class="form-group">
+                    <label for="formFile" class="form-label" style="color: rgb(0, 0, 0);">Ηλεκτρονικό έγγραφο στράτευσης</label>
+                    <p >
+                      <a href="/media/{{ applications.formFile }}" target="_blank" class="btn btn-primary" style="color: black;width: 360px;background-color: rgb(20, 179, 152);">Link για το ηλεκτρονικό έγγραφο στράτευσης</a>
+                    </p>
+                  </div>
+                  
+                
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);">Επιλογή κατάταξης</label>
+                    <input type="text" class="form-control" value="{{applications.katatajh}}" readonly="readonly" name="katatajh">
+                   </div>
+
+                   <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);">Μορφωτικό επίπεδο</label>
+                    <input type="text" class="form-control" value="{{applications.education_level}}" readonly="readonly" name="education_level">
+                   </div>
+
+                   <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);">Τηλέφωνο επικοινωνίας</label>
+                    <input type="text" class="form-control" value="{{applications.communication}}" readonly="readonly" name="communication">
+                   </div>
+
+                  <div class="form-group">
+                    <label style="color: black;">Status</label>
+                    <select class="form-control" name="status" style="color: black;">
+                      <option style="color: black;">Reject</option>
+                      <option style="color: black;">Pass</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label style="color: black;">Νομός στρατοπέδου</label>
+                    <select class="form-control" id="nomos_stratopedou" onInput='myFunction()' name="nomos_stratopedou" style="color: black;">
+                      <option style="color: black;">ΑΡΓΟΛΙΔΑΣ</option>
+                      <option style="color: black;">ΑΡΚΑΔΙΑΣ</option>
+                      <option style="color: black;">ΑΤΤΙΚΗΣ</option>
+                      <option style="color: black;">ΔΡΑΜΑΣ</option>
+                      <option style="color: black;">ΔΩΔΕΚΑΝΗΣΟΥ</option>
+                      <option style="color: black;">ΕΒΡΟΥ</option>
+                      <option style="color: black;">ΕΥΒΟΙΑΣ</option>
+                      <option style="color: black;">ΗΛΕΙΑΣ</option>
+                      <option style="color: black;">ΘΕΣΠΡΩΤΙΑΣ</option>
+                      <option style="color: black;">ΙΩΑΝΝΙΝΩΝ</option>
+                      <option style="color: black;">ΚΑΡΔΙΤΣΑΣ</option>
+                      <option style="color: black;">ΚΟΡΙΝΘΙΑΣ</option>
+                      <option style="color: black;">ΜΕΣΣΗΝΙΑΣ</option>
+                      <option style="color: black;">ΠΙΕΡΙΑΣ</option>
+                      <option style="color: black;">ΡΕΘΥΜΝΗΣ</option>
+                      <option style="color: black;">ΣΑΜΟΥ</option>
+                      <option style="color: black;">ΣΕΡΡΩΝ</option>
+                      <option style="color: black;">ΤΡΙΚΑΛΩΝ</option>
+                      <option style="color: black;">ΦΘΙΩΤΙΔΑΣ</option>
+                      <option style="color: black;">ΦΩΚΙΔΑΣ</option>
+                      <option style="color: black;">ΧΑΝΙΩΝ</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);">Αριθμός στρατοπέδου</label>
+                    <input type="text" class="form-control"  readonly="readonly" id="number_stratopedou" name="number_stratopedou">
+                   </div>
+
+                   <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);">Στρατιωτικός Αριθμός</label>
+                    <input type="text" class="form-control"  readonly="readonly" id="military_id" name="military_id">
+                   </div>
                    <div class="form-group">
                       {% if messages %}
                         {% for message in messages %}
@@ -61,7 +224,7 @@ Edit Application |  Application ID : {{ applications.id }}
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+                  <button type="submit" class="btn btn-primary btn-block">Αποθήκευση αλλαγών</button>
                 </div>
               </form>
             </div>
@@ -74,5 +237,100 @@ Edit Application |  Application ID : {{ applications.id }}
       </div>
     </section>
     <!-- /.content -->
-{% endblock main_content %}
-
+    <script src="{% static "brandi_custom_page/js/jquery-1.11.1.min.js" %}"></script>
+		<!-- Single Page Nav -->
+        <script src="{% static "brandi_custom_page/js/jquery.singlePageNav.min.js" %}"></script>
+		<!-- Twitter Bootstrap -->
+        <script src="{% static "brandi_custom_page/js/bootstrap.min.js" %}"></script>
+		<!-- jquery.fancybox.pack -->
+        <script src="{% static "brandi_custom_page/js/jquery.fancybox.pack.js" %}"></script>
+		<!-- jquery.mixitup.min -->
+        <script src="{% static "brandi_custom_page/js/jquery.mixitup.min.js" %}"></script>
+		<!-- jquery.parallax -->
+        <script src="{% static "brandi_custom_page/js/jquery.parallax-1.1.3.js" %}"></script>
+		<!-- jquery.countTo -->
+        <script src="{% static "brandi_custom_page/js/jquery-countTo.js" %}"></script>
+		<!-- jquery.appear -->
+        <script src="{% static "brandi_custom_page/js/jquery.appear.js" %}"></script>
+		<!-- Contact form validation -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+		<!-- Google Map -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<!-- jquery easing -->
+        <script src="{% static "brandi_custom_page/js/jquery.easing.min.js" %}"></script>
+		<!-- jquery easing -->
+        <script src="{% static "brandi_custom_page/js/wow.min.js" %}"></script>
+		<script>
+			var wow = new WOW ({
+				boxClass:     'wow',      // animated element css class (default is wow)
+				animateClass: 'animated', // animation css class (default is animated)
+				offset:       120,          // distance to the element when triggering the animation (default is 0)
+				mobile:       false,       // trigger animations on mobile devices (default is true)
+				live:         true        // act on asynchronously loaded content (default is true)
+			  }
+			);
+			wow.init();
+		</script> 
+		<!-- Custom Functions -->
+        <script src="{% static "brandi_custom_page/js/custom.js" %}"></script>
+		
+		<script type="text/javascript">
+			$(function(){
+				/* ========================================================================= */
+				/*	Contact Form
+				/* ========================================================================= */
+				
+				$('#contact-form').validate({
+					rules: {
+						name: {
+							required: true,
+							minlength: 2
+						},
+						email: {
+							required: true,
+							email: true
+						},
+						message: {
+							required: true
+						}
+					},
+					messages: {
+						name: {
+							required: "come on, you have a name don't you?",
+							minlength: "your name must consist of at least 2 characters"
+						},
+						email: {
+							required: "no email, no message"
+						},
+						message: {
+							required: "um...yea, you have to write something to send this form.",
+							minlength: "thats all? really?"
+						}
+					},
+					submitHandler: function(form) {
+						$(form).ajaxSubmit({
+							type:"POST",
+							data: $(form).serialize(),
+							url:"process.php",
+							success: function() {
+								$('#contact-form :input').attr('disabled', 'disabled');
+								$('#contact-form').fadeTo( "slow", 0.15, function() {
+									$(this).find(':input').attr('disabled', 'disabled');
+									$(this).find('label').css('cursor','default');
+									$('#success').fadeIn();
+								});
+							},
+							error: function() {
+								$('#contact-form').fadeTo( "slow", 0.15, function() {
+									$('#error').fadeIn();
+								});
+							}
+						});
+					}
+				});
+			});
+		</script>
+</body>
+</html>
+{% endif %}

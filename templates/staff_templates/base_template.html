@@ -162,7 +162,8 @@
           </div>
           
           <div class="service-desc">
-            <h3><a href="#" class="text-primary stretched-link">Έλεγχος αιτήσεων στράτευσης</a></h3>
+			{% url 'check_applications' as check_applications %}
+            <h3><a href="{{check_applications}}" class="text-primary stretched-link">Έλεγχος αιτήσεων στράτευσης</a></h3>
             <p>Αποδοχή/Απόρριψη των αιτήσεων στράτευσης και ορισμός κατάταξης</p>
           </div>
         </div>
@@ -175,7 +176,8 @@
           </div>
           
           <div class="service-desc">
-            <h3><a href="#" class="text-primary stretched-link">Έλεγχος αιτήσεων αναβολής/διακοπή στράτευσης</a></h3>
+			{% url 'check_anaboles' as check_anaboles %}
+            <h3><a href="{{check_anaboles}}" class="text-primary stretched-link">Έλεγχος αιτήσεων αναβολής/διακοπή στράτευσης</a></h3>
             <p>Αποδοχή/Απόρριψη των αιτήσεων αναβολής/διακοπής</p>
           </div>
         </div>
@@ -189,7 +191,8 @@
           </div>
           
           <div class="service-desc">
-            <h3><a href="#" class="text-primary stretched-link">Απογραφές στρατευσίμων</a></h3>
+			{% url 'check_apografes' as check_apografes %}
+            <h3><a href="{{check_apografes}}" class="text-primary stretched-link">Απογραφές στρατευσίμων</a></h3>
             <p>Προβολή και καταχώρηση των απογραφών στρατευσίμων</p>
           </div>
         </div>
@@ -205,7 +208,8 @@
           </div>
           
           <div class="service-desc">
-            <h3><a href="#" class="text-primary stretched-link">Έλεγχος αιτήσεων στρατιωτικών σχολών</a></h3>
+			{% url 'check_sxoles' as check_sxoles %}
+            <h3><a href="{{check_sxoles}}" class="text-primary stretched-link">Έλεγχος αιτήσεων στρατιωτικών σχολών</a></h3>
             <p>Προβολή και αποδοχή/απόρριψη των αιτήσεων για στρατιωτικές σχολές</p>
           </div>
         </div>

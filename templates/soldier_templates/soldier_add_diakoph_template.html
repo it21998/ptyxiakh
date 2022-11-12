@@ -195,8 +195,8 @@
                 <p class="lead" style="color: black;">Δυστυχώς δεν υπάρχει κάποια εγκεκριμένη αίτηση στράτευσης διαθέσιμη προς αναβολή.</p>
                 <p class="lead" style="color: black;">Για την συμπλήρωση της αίτησης της αναβολής σας απαραίτητη προυπόθεση είναι η πραγματοποίηση της αίτησης αλλά και η αποδοχή της  από τους υπεύθυνους!</p>
               </div>
-              {% for application in applications|slice:"1" %}
-              {% if application.status == "pending" %}
+              {% for application in applications %}
+              {% if application.status == "Pass" %}
               <script>
                 var div = document.getElementById('nope');
                 div.remove();
@@ -222,7 +222,7 @@
                   </div>
                   <div class="form-group">
                     <label style="color: black;">Λόγος Αναβολής/Διακοπής</label>
-                    <p><select class="custom-select" name="reason" style="width:400px; height: 35px;border-radius: 5px; background-color: rgb(253, 253, 253);color: black;">
+                    <p><select class="form-control" name="reason" style="color: black;">
                       <option style="color: black;">Για λόγους υγείας</option>
                       <option style="color: black;">Νοσηλευόμενοι</option>
                       <option style="color: black;">Κρατούμενοι</option>

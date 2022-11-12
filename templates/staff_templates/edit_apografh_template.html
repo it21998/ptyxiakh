@@ -6,31 +6,9 @@
 <!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
     <head>
-      <script>
-       function validateForm() {
-  var x = document.forms["myForm"]["first_name"].value;
-  var y = document.forms["myForm"]["last_name"].value;
-  var z = document.forms["myForm"]["communication"].value
-  var w = document.forms["myForm"]["formFile"].value
-  if (x == "" || x == null) {
-    alert("Παρακαλώ πληκτρολογήστε το όνομα σας!");
-    return false;
-  } else if (y == "" || y == null) {
-    alert("Παρακαλώ πληκτρολογήστε το επώνυμο σας!");
-    return false;
-  } else if (z == "" || z == null) {
-    alert("Παρακαλώ πληκτρολογήστε το τηλ.επικοινωνίας σας!");
-    return false;
-  } else if (w == "" || w == null) {
-    alert("Παρακαλώ επισυνάψτε το ηλεκτρονικό έγγραφο!");
-    return false;
-  }
-}
-        
-        </script>
+    
 
-
-
+   
     	<!-- meta charec set -->
         <meta charset="utf-8">
 		<!-- Always force latest IE rendering engine or request Chrome Frame -->
@@ -78,7 +56,7 @@
         <!-- 
         Fixed Navigation
         ==================================== -->
-        <header id="navigation" class="navbar-fixed-top navbar" style="background-color:rgb(20, 179, 152);">
+      <header  class="navbar-fixed-top navbar" style="background-color:rgb(20, 179, 152);">
             <div class="container">
                 <div class="navbar-header">
                     <!-- responsive nav button -->
@@ -89,7 +67,7 @@
 					<!-- /responsive nav button -->
 					
 					<!-- logo -->
-                    <a class="navbar-brand" href="{% url 'soldier_home' %}">
+                    <a class="navbar-brand" href="{% url 'staff_home' %}">
 						<h3 id="logo" style="color: rgb(247, 247, 247); line-height: 47px;">
 							<img src="https://images.vexels.com/media/users/3/194978/isolated/lists/4e5f08e2a984b379c5d0d7ba1b77489a-general-major-military-rank-icon.png" style="height: 50px;" alt="Stratologia">Stratologia
 						</h3>
@@ -105,13 +83,13 @@
                          
                     </ul>
                     <div style="margin-left: 100px; margin-top: 17px;">
-                      <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/soldier_home">Home</a>
+                      <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/staff_home">Home</a>
                       </div>
                     <div style="margin-left: 185px; margin-top: -21px;">
-                      <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/soldier_home#work">Υπηρεσίες</a>
+                      <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/staff_home">Staff</a>
                       </div>
 
-					<div style="margin-left: 270px; margin-top: -21px;">
+					<div style="margin-left: 240px; margin-top: -21px;">
 					<a class="text-info" style="color: rgb(255, 255, 255);" href="{% url 'keycloak_logout' %}">Logout</a>
 				</div>
 
@@ -123,9 +101,6 @@
             </div>
         </header>
 
-
-
-
     <!-- Main content -->
     <section class="content">
       <div class="container">
@@ -134,60 +109,102 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header" style="height: 50px">
-                <h3 class="card-title" style="color: rgb(0, 0, 0);">Αίτηση Στράτευσης</h3>
+                <h3 class="card-title" style="color: rgb(0, 0, 0);">Προβολή απογραφής || Απογραφή: {{apografes.id}}</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" name="myForm" action="/add_application_save" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+              <form role="form" name="myForm" action="/edit_apografh_save" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
                     <label style="color: rgb(0, 0, 0);">Όνομα</label>
-                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε το όνομα σας" name="first_name">
+                    <input type="text" class="form-control" readonly="readonly" value={{apografes.first_name}} name="first_name">
+                    <input type="hidden" class="form-control" name="apografh_id"  value="{{ apografes.id }}">  
+
                   </div>
                   <div class="form-group">
                     <label style="color: rgb(0, 0, 0);">Επώνυμο</label>
-                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε το επώνυμο σας" name="last_name">
+                    <input type="text" class="form-control" readonly="readonly" value="{{apografes.last_name}}" name="last_name">
                   </div>
                   <div class="form-group">
                     <label style="color: rgb(0, 0, 0);" >Email</label>
-                    <input type="text" readonly="readonly" class="form-control"  value="{{user.email}}" name="email">
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.email}}" name="email">
                   </div>
                   <div class="form-group">
-                    <label style="color: rgb(0, 0, 0);">Ηλικία</label>
-                    <input type="number" class="form-control" value="18" min="18" max="55" name="age">
+                    <label style="color: rgb(0, 0, 0);" >Πατρώνυμο</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.father_name}}" name="father_name">
                   </div>
-                  <div class="mb-3">
-                    <label for="formFile" class="form-label" style="color: rgb(0, 0, 0);">Επιλέξτε το ηλεκτρονικό έγγραφο στράτευσης σας</label>
-                    <input class="form-control" type="file" name="formFile" style="height: 35px;">
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Μητρώνυμο</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.mother_name}}" name="mother_name">
                   </div>
-                  <div class="form-group" style="margin-top: 14px;">
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Αριθμός ταυτότητας</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.id_number}}" name="id_number">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >ΑΦΜ</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.AFM}}" name="AFM">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Νομός της μόνιμης κατοικίας</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.nomos}}" name="nomos">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Περιοχή της μόνιμης κατοικίας</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.perioxh}}" name="perioxh">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Οδός της μόνιμης κατοικίας</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.odos}}" name="odos">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >ID Αίτησης Στράτευσης</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.aithsh_id}}" name="aithsh_id">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Ανάστημα</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.height}}" name="height">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Βάρος</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{apografes.weight}}" name="weight">
+                  </div>
+                  
+                  <div class="form-group">
                     <label style="color: rgb(0, 0, 0);">Επιλογή κατάταξης</label>
-                    <p><select class="form-control" name="katatajh" style="color: black;">
-                      <option style="color: rgb(0, 0, 0);">Στρατός ξηράς</option>
-                      <option style="color: rgb(0, 0, 0);">Πολεμική Αεροπορεία</option>
-                      <option style="color: rgb(0, 0, 0);">Πολεμικό Ναυτικό</option>
-                      <option style="color: rgb(0, 0, 0);">Ειδικές Δυνάμεις</option>
-                    </select>
-                  </p>
-                  </div>
-                   <div class="form-group" style="margin-top: 14px;">
+                    <input type="text" class="form-control" value="{{apografes.katatajh}}" readonly="readonly" name="katatajh">
+                   </div>
+
+                   <div class="form-group">
                     <label style="color: rgb(0, 0, 0);">Μορφωτικό επίπεδο</label>
-                    <p><select class="form-control" name="education_level" style="color: black;">
-                      <option style="color: rgb(0, 0, 0);">Τελειόφοιτος Δημοτικού</option>
-                      <option style="color: rgb(0, 0, 0);">Τελειόφοιτος Γυμνασίου</option>
-                      <option style="color: rgb(0, 0, 0);">Τελειόφοιτος Λυκείου</option>
-                      <option style="color: rgb(0, 0, 0);">Τελειόφοιτος Πανεπιστημίου</option>
-                    </select>
-                  </p>                
-                  </div>
+                    <input type="text" class="form-control" value="{{apografes.education_level}}" readonly="readonly" name="education_level">
+                   </div>
+
                    <div class="form-group">
                     <label style="color: rgb(0, 0, 0);">Τηλέφωνο επικοινωνίας</label>
-                    <input type="text" class="form-control" placeholder="Πληκτρολογήστε το τηλέφωνο σας" name="communication">
+                    <input type="text" class="form-control" value="{{apografes.communication}}" readonly="readonly" name="communication">
                    </div>
-                
+
+                  <div class="form-group">
+                    <label for="formFile" class="form-label" style="color: rgb(0, 0, 0);">Ηλεκτρονικό έγγραφο απογραφής</label>
+                    <p >
+                      <a href="/media/{{ apografes.formFile }}" target="_blank" class="btn btn-primary" style="color: black;width: 360px;background-color: rgb(20, 179, 152);">Link για το ηλεκτρονικό έγγραφο απογραφής</a>
+                    </p>
+                  </div>
                   
-                      <div class="form-group">
+                
+              
+                  <div class="form-check">
+                    <label style="color: rgb(0, 0, 0);">Επιλέξτε το κουτάκι για την επιβεβαίωση της προβολής της απογραφής</label>
+                    <p>
+                    <input class="form-check-input" type="checkbox" value="Checked" name="status" id="flexCheckChecked" style="height: 16px;width: 20px;" >
+                    <label class="form-check-label" for="flexCheckChecked" >Επιβεβαίωση</label>
+                    </p>
+                  </div>
+                  
+                  
+                   <div class="form-group">
                       {% if messages %}
                         {% for message in messages %}
                         {% if message.tags == 'error' %}
@@ -204,7 +221,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block">Προσθήκη νέας αίτησης</button>
+                  <button type="submit" class="btn btn-primary btn-block">Αποθήκευση αλλαγών</button>
                 </div>
               </form>
             </div>
@@ -216,6 +233,7 @@
           </div>
       </div>
     </section>
+    <!-- /.content -->
     <script src="{% static "brandi_custom_page/js/jquery-1.11.1.min.js" %}"></script>
 		<!-- Single Page Nav -->
         <script src="{% static "brandi_custom_page/js/jquery.singlePageNav.min.js" %}"></script>
@@ -310,5 +328,6 @@
 				});
 			});
 		</script>
-    <!-- /.content -->
+</body>
+</html>
 {% endif %}

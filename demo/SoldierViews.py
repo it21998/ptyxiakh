@@ -114,10 +114,11 @@ def add_apografi_save(request):
         education_level=request.POST.get("education_level")
         communication=request.POST.get("communication")
         formFile=request.FILES["formFile"]
-        
+        status="Unchecked"
+
       
         try:
-            apografi=Apografh(first_name=first_name,last_name=last_name,email=email,father_name=father_name,mother_name=mother_name,id_number=id_number,AFM=AFM,nomos=nomos,perioxh=perioxh,odos=odos,aithsh_id=aithsh_id,height=height,weight=weight,katatajh=katatajh,education_level=education_level,communication=communication,formFile=formFile)
+            apografi=Apografh(first_name=first_name,last_name=last_name,email=email,father_name=father_name,mother_name=mother_name,id_number=id_number,AFM=AFM,nomos=nomos,perioxh=perioxh,odos=odos,aithsh_id=aithsh_id,height=height,weight=weight,katatajh=katatajh,education_level=education_level,communication=communication,formFile=formFile,status=status)
             apografi.save()
           
             messages.success(request,"Successfully Added Apografi")
