@@ -74,3 +74,13 @@ class Sxolh(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
     objects=models.Manager()
+
+
+
+class MyRoles(models.Model):
+    id=models.AutoField(primary_key=True)
+    useremail=models.CharField(max_length=255)
+    userrole=models.CharField(max_length=255)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now_add=True)
+    objects=models.Manager()        

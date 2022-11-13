@@ -144,6 +144,7 @@
                   </thead>
                   <tbody>
                   {% for application in applications %}
+                  {% if application.status == "pending" %}
 
                     <tr>
                       <td style="color: black;">{{ application.id }}</td>
@@ -157,6 +158,73 @@
                       <td style="color: black;">{{ application.created_at }}</td>
                       <td><a href="/edit_application/{{ application.id }}" class="btn btn-success">Επεξεργασία</a></td>
                     </tr>
+                    {% endif %}
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+      <div class="sec-title text-center">
+        <div class="devider"></div>
+      </div>
+    </section>
+
+    <section class="content" style="margin-top: -100px;">
+      <div class="container">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header" style="height: 55px;">
+                <h3 class="card-title"  style="color: black;">Όλες οι αιτήσεις στράτευσης που έχουν ελεγχθεί</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+
+                   
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th style="color: black;">ID</th>
+                      <th style="color: black;">Ονοματεπώνυμο</th>
+                      <th style="color: black;">Email</th>
+                      <th style="color: black;">Ηλικία</th>
+                      <th style="color: black;" >Κατάταξη</th>
+                      <th style="color: black;">Μορφ. επίπεδο</th>
+                      <th style="color: black;">Τηλ. επικοινωνίας</th>
+                      <th style="color: black;" >Status</th>
+                      <th style="color: black;">Date Created</th>
+                      <th style="color: black;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for application in applications %}
+                  {% if application.status != "pending" %}
+
+                    <tr>
+                      <td style="color: black;">{{ application.id }}</td>
+                      <td style="color: black;">{{ application.first_name }} {{application.last_name}}</td>
+                      <td style="color: black;">{{ application.email }}</td>
+                      <td style="color: black;">{{ application.age }}</td>
+                      <td style="color: black;">{{ application.katatajh }}</td>
+                      <td style="color: black;">{{ application.education_level }}</td>
+                      <td style="color: black;">{{ application.communication }}</td>
+                      <td style="background-color:rgb(20, 179, 152);color: black;" >{{ application.status }}</td>
+                      <td style="color: black;">{{ application.created_at }}</td>
+                      <td><a href="/edit_application/{{ application.id }}" class="btn btn-success">Επεξεργασία</a></td>
+                    </tr>
+                    {% endif %}
                   {% endfor %}
                   </tbody>
                 </table>

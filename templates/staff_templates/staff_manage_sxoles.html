@@ -145,6 +145,7 @@
                   </thead>
                   <tbody>
                   {% for sxolh in sxoles %}
+                  {% if sxolh.status == "pending" %}
 
                     <tr>
                       <td style="color: black;">{{ sxolh.id }}</td>
@@ -159,6 +160,75 @@
                       <td style="color: black;">{{ sxolh.created_at }}</td>
                       <td><a href="/edit_sxolh/{{ sxolh.id }}" class="btn btn-success">Επεξεργασία</a></td>
                     </tr>
+                    {% endif %}
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+      <div class="sec-title text-center">
+        <div class="devider"></div>
+      </div>
+    </section>
+
+    <section class="content" style="margin-top: -100px;">
+      <div class="container">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header" style="height: 55px;">
+                <h3 class="card-title"  style="color: black;">Όλες οι αιτήσεις για στρατιωτικές σχολές που έχουν ελεγχθεί</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+
+                   
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th style="color: black;">ID</th>
+                      <th style="color: black;">Ονοματεπώνυμο</th>
+                      <th style="color: black;">Email</th>
+                      <th style="color: black;">Ηλικία</th>
+                      <th style="color: black;" >ΑΦΜ</th>
+                      <th style="color: black;">ΑΜΚΑ</th>
+                      <th style="color: black;">Τηλ. επικοινωνίας</th>
+                      <th style="color: black;">Επιλεγμένη Σχολή</th>
+                      <th style="color: black;" >Status</th>
+                      <th style="color: black;">Date Created</th>
+                      <th style="color: black;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for sxolh in sxoles %}
+                  {% if sxolh.status != "pending" %}
+
+                    <tr>
+                      <td style="color: black;">{{ sxolh.id }}</td>
+                      <td style="color: black;">{{ sxolh.first_name }} {{sxolh.last_name}}</td>
+                      <td style="color: black;">{{ sxolh.email }}</td>
+                      <td style="color: black;">{{ sxolh.age }}</td>
+                      <td style="color: black;">{{ sxolh.AFM }}</td>
+                      <td style="color: black;">{{ sxolh.AMKA }}</td>
+                      <td style="color: black;">{{ sxolh.communication }}</td>
+                      <td style="color: black;">{{ sxolh.mysxolh }}</td>
+                      <td style="background-color:rgb(20, 179, 152);color: black;" >{{ sxolh.status }}</td>
+                      <td style="color: black;">{{ sxolh.created_at }}</td>
+                      <td><a href="/edit_sxolh/{{ sxolh.id }}" class="btn btn-success">Επεξεργασία</a></td>
+                    </tr>
+                    {% endif %}
                   {% endfor %}
                   </tbody>
                 </table>

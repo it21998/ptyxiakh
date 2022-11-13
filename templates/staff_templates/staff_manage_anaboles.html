@@ -143,6 +143,7 @@
                   </thead>
                   <tbody>
                     {% for anabolh in anaboles %}
+					{% if anabolh.status == "pending" %}
                     <tr>
                       <td style="color: black;">{{ anabolh.id }}</td>
                       <td style="color: black;">{{ anabolh.first_name }} {{anabolh.last_name}}</td>
@@ -153,6 +154,7 @@
                       <td style="color: black;">{{ anabolh.created_at }}</td>
                       <td><a href="/edit_anabolh/{{ anabolh.id }}" class="btn btn-success">Επεξεργασία</a></td>
                     </tr>
+					{% endif %}
                   {% endfor %}
                   </tbody>
                 </table>
@@ -163,10 +165,70 @@
           </div>
         </div>
       </div>
-     
+	  <div class="sec-title text-center">
+        <div class="devider"></div>
+      </div>
     </section>
 
-
+	<section class="content" style="margin-top: -100px;">
+		<div class="container">
+  
+  
+			 <div class="row">
+			<div class="col-12">
+			  <div class="card">
+				<div class="card-header" style="height: 55px;">
+				  <h3 class="card-title"  style="color: black;">Όλες οι αιτήσεις αναβολής που έχουν ελεγχθεί</h3>
+  
+				  <div class="card-tools">
+					<div class="input-group input-group-sm" style="width: 150px;">
+  
+					 
+					</div>
+				  </div>
+				</div>
+				<!-- /.card-header -->
+				<div class="card-body table-responsive p-0">
+				  <table class="table table-hover text-nowrap">
+					<thead>
+					  <tr>
+						<th style="color: black;">ID</th>
+						<th style="color: black;">Ονοματεπώνυμο</th>
+						<th style="color: black;">Email</th>
+						<th style="color: black;">ID Αίτησης Στράτευσης</th>
+						<th style="color: black;" >Λόγος αναβολής</th>
+						<th style="color: black;" >Status</th>
+						<th style="color: black;">Date Created</th>
+						<th style="color: black;">Action</th>
+					  </tr>
+					  </tr>
+					</thead>
+					<tbody>
+					  {% for anabolh in anaboles %}
+					  {% if anabolh.status != "pending" %}
+					  <tr>
+						<td style="color: black;">{{ anabolh.id }}</td>
+						<td style="color: black;">{{ anabolh.first_name }} {{anabolh.last_name}}</td>
+						<td style="color: black;">{{ anabolh.email }}</td>
+						<td style="color: black;">{{ anabolh.aithsh_id }}</td>
+						<td style="color: black;">{{ anabolh.reason }}</td>
+						<td style="background-color:rgb(20, 179, 152);color: black;" >{{ anabolh.status }}</td>
+						<td style="color: black;">{{ anabolh.created_at }}</td>
+						<td><a href="/edit_anabolh/{{ anabolh.id }}" class="btn btn-success">Επεξεργασία</a></td>
+					  </tr>
+					  {% endif %}
+					{% endfor %}
+					</tbody>
+				  </table>
+				</div>
+				<!-- /.card-body -->
+			  </div>
+			  <!-- /.card -->
+			</div>
+		  </div>
+		</div>
+	   
+	  </section>
 
     <script src="{% static "brandi_custom_page/js/jquery-1.11.1.min.js" %}"></script>
 		<!-- Single Page Nav -->

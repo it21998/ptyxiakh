@@ -14,7 +14,7 @@ def staff_home(request):
 
 
 def check_applications(request):
-        applications=Aithsh.objects.filter(status="pending")
+        applications=Aithsh.objects.all()
         return render(request,"staff_templates/staff_manage_applications.html",{"applications":applications})
 
 
@@ -47,7 +47,7 @@ def edit_application_save(request):
 
 
 def check_anaboles(request):
-        anaboles=Diakoph.objects.filter(status="pending")
+        anaboles=Diakoph.objects.all()
         return render(request,"staff_templates/staff_manage_anaboles.html",{"anaboles":anaboles})
 
 
@@ -121,7 +121,7 @@ def edit_apografh_save(request):
 
 
 def check_sxoles(request):
-        sxoles=Sxolh.objects.filter(status="pending")
+        sxoles=Sxolh.objects.all()
         return render(request,"staff_templates/staff_manage_sxoles.html",{"sxoles":sxoles})
 
 
