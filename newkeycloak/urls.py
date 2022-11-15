@@ -26,7 +26,7 @@ from demo import SoldierViews, StaffViews, views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('keycloak/', include('django_keycloak.urls')),
-    path('', Home.as_view(), name='home'),
+    path('', views.Home, name='home'),
     path('get_user_details', views.GetUserDetails),
     path('logout_user', views.logout_user,name="logout"),
     path('soldier_home', SoldierViews.soldier_home, name="soldier_home"),

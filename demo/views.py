@@ -1,10 +1,7 @@
 import this
 from django.shortcuts import render
 
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-    PermissionRequiredMixin
-)
+
 # Create your views here.
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -14,22 +11,27 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib import messages
-import requests
-
 from demo.models import MyRoles
 
-class Home(TemplateView):
-    template_name = 'home.html'
+
+def Home(request):
+    try:
+        userrole=role_mapping_function(request)
+    except Exception as e:
+        print(e)
+        userrole="0"
+    return render(request,"home.html",{"userrole":userrole})
 
 
 
 def role_mapping_function(request):
     flaguser=None
-    flaguser=MyRoles.objects.get(useremail=request.user.email)
-    print(flaguser.userrole)
-    if flaguser.userrole == "soldier" or flaguser.userrole == "staff" or flaguser.userrole == "admin" :
-        return flaguser.userrole
-    else :
+    try:
+        flaguser=MyRoles.objects.get(useremail=request.user.email)
+        print(flaguser.userrole)
+        if flaguser.userrole == "soldier" or flaguser.userrole == "staff" or flaguser.userrole == "admin" :
+            return flaguser.userrole
+    except :        
         try:
          admin_possible=str(request.user.oidc_profile.realm.client.openid_api_client.userinfo(
          token=request.user.oidc_profile.access_token)['admin-attribute'])

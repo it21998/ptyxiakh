@@ -1,4 +1,4 @@
-{% if user.is_authenticated %}
+{% if user.is_authenticated and userrole == "staff" %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -23,6 +23,7 @@
 		<!-- Google Font -->
 		
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="https://images.vexels.com/media/users/3/194978/isolated/lists/4e5f08e2a984b379c5d0d7ba1b77489a-general-major-military-rank-icon.png" type="image/x-icon">
 
 		<!-- CSS
 		================================================== -->

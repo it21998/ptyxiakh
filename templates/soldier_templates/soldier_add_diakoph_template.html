@@ -1,5 +1,5 @@
 {% load static %}
-{% if user.is_authenticated %}
+{% if user.is_authenticated and userrole == "soldier" %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -34,6 +34,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="https://images.vexels.com/media/users/3/194978/isolated/lists/4e5f08e2a984b379c5d0d7ba1b77489a-general-major-military-rank-icon.png" type="image/x-icon">
 
 		<!-- CSS
 		================================================== -->
@@ -92,14 +93,14 @@
 						<li class="info"><a class="d-block" style="color: rgb(255, 255, 255);">{{ user.email }}</a></li>
                          
                     </ul>
-                    <div style="margin-left: 100px; margin-top: 17px;">
+                    <div style="margin-left: 120px; margin-top: 17px;">
                       <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/soldier_home">Home</a>
                       </div>
-                    <div style="margin-left: 185px; margin-top: -21px;">
+                    <div style="margin-left: 200px; margin-top: -21px;">
                       <a class="text-info" style="color: rgb(255, 255, 255);" href="http://127.0.0.1:8000/soldier_home#work">Υπηρεσίες</a>
                       </div>
 
-					<div style="margin-left: 270px; margin-top: -21px;">
+					<div style="margin-left: 280px; margin-top: -21px;">
 					<a class="text-info" style="color: rgb(255, 255, 255);" href="{% url 'keycloak_logout' %}">Logout</a>
 				</div>
 
@@ -177,7 +178,9 @@
           </div>
         </div>
       </div>
-     
+      <div class="sec-title text-center">
+        <div class="devider"></div>
+      </div>
     </section>
 
     <section class="content" style="margin-top: -110px;">
@@ -196,6 +199,7 @@
                 <p class="lead" style="color: black;">Για την συμπλήρωση της αίτησης της αναβολής σας απαραίτητη προυπόθεση είναι η πραγματοποίηση της αίτησης αλλά και η αποδοχή της  από τους υπεύθυνους!</p>
               </div>
               {% for application in applications %}
+              {% if application.email == user.email %}
               {% if application.status == "Pass" %}
               <script>
                 var div = document.getElementById('nope');
@@ -260,6 +264,7 @@
                 </div>
               </form>
             </div>
+            {% endif %}
             {% endif %}
             {% endfor %}
             <!-- /.card -->
