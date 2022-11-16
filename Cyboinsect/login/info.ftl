@@ -9,7 +9,7 @@
         <a class="link-back" href="${client.baseUrl}">${msg("backToApplication")}</a>
     </#if>
     <#elseif section = "form">
-    <div id="kc-info-message">
+     <div id="kc-info-message">
         <p class="instruction">${message.summary}<#if requiredActions??>:</p>
         <#list requiredActions>
             <ul class="list list-bullet">
@@ -17,7 +17,7 @@
             </ul>
         </#list>
         <#else></p></#if>
-
+        
         <#if skipLink??>
         <#else>
             <#if pageRedirectUri??>

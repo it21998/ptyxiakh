@@ -5,7 +5,6 @@ from django.urls import reverse
 from pkg_resources import require
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail
-
 from demo.models import Aithsh, Apografh, Diakoph, Sxolh
 from demo.views import role_mapping_function
 
@@ -41,7 +40,12 @@ def add_application_save(request):
         try:
             application=Aithsh(first_name=first_name,last_name=last_name,email=email,age=age,formFile=formFile,katatajh=katatajh,education_level=education_level,communication=communication,status=status,nomos_stratopedou=nomos_stratopedou,number_stratopedou=number_stratopedou,military_id=military_id)
             application.save()
-          
+            send_mail(
+                'Νέα Αίτηση Στράτευσης ',
+                "Καταχώρηση νέας αίτησης στράτευσης από τον χρήστη με ID: "+str(request.user.id)+" και username: "+str(request.user.first_name),
+                request.user.email,
+                ['staff@hua.gr'],
+                fail_silently=False,)
             messages.success(request,"Successfully Added Application")
             return HttpResponseRedirect(reverse("add_application"))
         except Exception as e:
@@ -78,7 +82,12 @@ def add_diakoph_save(request):
         try:
             diakoph=Diakoph(first_name=first_name,last_name=last_name,email=email,aithsh_id=aithsh_id,reason=reason,formFile=formFile,status=status)
             diakoph.save()
-          
+            send_mail(
+                'Νέα Αίτηση Aναβολής ',
+                "Καταχώρηση νέας αίτησης αναβολής από τον χρήστη με ID: "+str(request.user.id)+" και username: "+str(request.user.first_name),
+                request.user.email,
+                ['staff@hua.gr'],
+                fail_silently=False,)
             messages.success(request,"Successfully Added Anavolh")
             return HttpResponseRedirect(reverse("add_diakoph"))
         except Exception as e:
@@ -123,7 +132,12 @@ def add_apografi_save(request):
         try:
             apografi=Apografh(first_name=first_name,last_name=last_name,email=email,father_name=father_name,mother_name=mother_name,id_number=id_number,AFM=AFM,nomos=nomos,perioxh=perioxh,odos=odos,aithsh_id=aithsh_id,height=height,weight=weight,katatajh=katatajh,education_level=education_level,communication=communication,formFile=formFile,status=status)
             apografi.save()
-          
+            send_mail(
+                'Νέα Καταχώρηση απογραφής ',
+                "Καταχώρηση νέας αίτησης απογραφής από τον χρήστη με ID: "+str(request.user.id)+" και username: "+str(request.user.first_name),
+                request.user.email,
+                ['staff@hua.gr'],
+                fail_silently=False,)
             messages.success(request,"Successfully Added Apografi")
             return HttpResponseRedirect(reverse("add_apografi"))
         except Exception as e:
@@ -162,7 +176,12 @@ def add_sxolh_save(request):
         try:
             sxolh=Sxolh(first_name=first_name,last_name=last_name,email=email,age=age,AFM=AFM,AMKA=AMKA,communication=communication,mysxolh=mysxolh,formFile=formFile,status=status)
             sxolh.save()
-          
+            send_mail(
+                'Νέα Αίτηση Εγγραφής σε Στρατιωτική Σχολή ',
+                "Καταχώρηση νέας αίτησης εγγραφής σε στρατιωτική σχολή από τον χρήστη με ID: "+str(request.user.id)+" και username: "+str(request.user.first_name),
+                request.user.email,
+                ['staff@hua.gr'],
+                fail_silently=False,)
             messages.success(request,"Successfully Added Application")
             return HttpResponseRedirect(reverse("add_sxolh"))
         except Exception as e:

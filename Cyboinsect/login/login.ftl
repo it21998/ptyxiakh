@@ -14,7 +14,7 @@ ${msg("loginTitle",(realm.displayName!''))}
    <img  src="https://images.vexels.com/media/users/3/194978/isolated/lists/4e5f08e2a984b379c5d0d7ba1b77489a-general-major-military-rank-icon.png" alt="logo" style="height:60px;">
 </div>
 <h2 class="title" style="text-align:center;color: black;">Login</h2>
-<form id="kc-form-login" class="form form1" return true;" action="${url.loginAction}" method="post">
+<form id="kc-form-login" class="form form1" return true;" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
 
 
 
@@ -75,7 +75,7 @@ ${msg("loginTitle",(realm.displayName!''))}
 </#if>
 <div style="margin-top:50px;text-align:center">
    <span style="text-size:16px;">Don't have an account?</span>
-   <a href="${url.registrationUrl}" style="color:#e6186d;">Signup</a>
+   <a href="${url.registrationUrl}" style="color:#e6186d;">SignUp</a>
    <div>
    </div>
 </div>

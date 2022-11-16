@@ -8,7 +8,7 @@ ${msg("registerTitle")}
 
 <#elseif section = "form">
 <div class="card card-3">
-<div class="card-heading" style="background: url('https://www.rollingstone.com/wp-content/uploads/2022/10/us-socafrica-2022.03.10.niger_.08824.jpg?w=1581&h=1054&crop=1') top left/cover no-repeat;background-color:#F0E3F4"></div>
+<div class="card-heading" style="background: url('https://www.rollingstone.com/wp-content/uploads/2022/10/us-socafrica-2022.03.10.niger_.08824.jpg?w=1581&h=1054&crop=1') top left/cover no-repeat;width:320px"></div>
 <#if realm.password>
 </#if>
 <#if realm.password>
@@ -48,21 +48,21 @@ ${msg("registerTitle")}
 <div class="input-group-register">
    <label for="password">${msg("Password*")}</label>
    <input type="password" id="password" class="input--style-3 input-width" name="password" required oninvalid="this.setCustomValidity('Enter your password')"
-      oninput="this.setCustomValidity('')" value="${(register.formData.firstName!'')}"  autocomplete="new-password"/>
+      oninput="this.setCustomValidity('')" value="${(register.formData.firstName!'')}"  autocomplete="new-password" style="width: 235px;"/>
    
 </div>
 <div class="input-group-register">
    <label for="password-confirm" class="label-name">${msg("passwordConfirm")}</label>
    <input type="password" id="password-confirm" class="input--style-3 input-width"
       name="password-confirm"  required oninvalid="this.setCustomValidity('Enter your confirmpassword')"
-      oninput="this.setCustomValidity('')" value="${(register.formData.firstName!'')}"/>
+      oninput="this.setCustomValidity('')" value="${(register.formData.firstName!'')}" style="width: 235px;"/>
   
 </div>
 </#if>
 
 
 <div style="width: 100%; justify-content: center; display: flex;margin: 20px 0px 20px 0px;w">
-   <input class="submit" type="submit" value="${msg("doRegister")}" tabindex="3">
+   <input class="submit" type="submit" value="${msg("doRegister")}" tabindex="3" style="margin-right:60px;">
 </div>
 </form>
 </#if>
@@ -78,8 +78,8 @@ ${msg("registerTitle")}
    </#list>
 </div>
 </#if>
-<div style="text-align: center">
-   <span style="text-size:16px;">Allready have an account?</span>
+<div style="text-align: center;margin-right:55px;">
+   <span style="text-size:16px;">Already have an account?</span>
    <a href="${url.loginUrl}" style="color:#e6186d; ">SignIn.</a>
    <div>
    </div>

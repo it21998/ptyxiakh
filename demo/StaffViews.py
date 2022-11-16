@@ -41,7 +41,13 @@ def edit_application_save(request):
             application.number_stratopedou=request.POST.get("number_stratopedou")
             application.military_id=request.POST.get("military_id")
             application.save()
-            
+
+            send_mail(
+                'Έλεγχος Αίτησης Στράτευσης ',
+                "Ελέγθηκε απο τον υπεύθυνο η αίτηση στράτευσης που κάνατε με ID: "+str(application_id)+". \nΜπορείτε να ελέγξετε την κατάσταση της αίτησης σας στο <Οι αιτήσεις μου>.\nΣε περίπτωση επιβεβαίωσης στης αίτησης μεταβείτε στο <Κατάταξη> \nγια να λάβετε πληροφορίες για την κατάταξη σας! ",
+                request.user.email,
+                [application.email],
+                fail_silently=False,)
             messages.success(request,"Successfully Edited Application")
             return HttpResponseRedirect(reverse("edit_application",kwargs={"application_id":application_id}))
         except:
@@ -79,7 +85,13 @@ def edit_anabolh_save(request):
                 application=Aithsh.objects.get(id=application_id)
                 application.status="Reject"
                 application.save()
-            
+              
+            send_mail(
+                'Έλεγχος Αναβολής ',
+                "Ελέγθηκε απο τον υπεύθυνο η αίτηση αναβολής που κάνατε με ID: "+str(anabolh_id)+". \nΜπορείτε να ελέγξετε την κατάσταση της αίτησης αναβολής σας στο <Οι αιτήσεις μου> ",
+                request.user.email,
+                [anabolh.email],
+                fail_silently=False,)
 
             messages.success(request,"Successfully Edited Application")
             return HttpResponseRedirect(reverse("edit_anabolh",kwargs={"anabolh_id":anabolh_id}))
@@ -117,7 +129,12 @@ def edit_apografh_save(request):
             
             
             apografh.save()
-            
+            send_mail(
+                'Έλεγχος Απογραφής ',
+                "Ελέγθηκε απο τον υπεύθυνο η αίτηση απογραφής που κάνατε με ID: "+str(apografh_id)+". \nΜπορείτε να ελέγξετε την κατάσταση της απογραφής σας στο <Οι αιτήσεις μου> ",
+                request.user.email,
+                [apografh.email],
+                fail_silently=False,)
         
             messages.success(request,"Successfully Edited Application")
             return HttpResponseRedirect(reverse("edit_apografh",kwargs={"apografh_id":apografh_id}))
@@ -151,7 +168,13 @@ def edit_sxolh_save(request):
             sxolh=Sxolh.objects.get(id=sxolh_id)
             sxolh.status=request.POST.get("status")
             sxolh.save()
-            
+
+            send_mail(
+                'Έλεγχος Εγγραφής Σχολής ',
+                "Ελέγθηκε απο τον υπεύθυνο η αίτηση εγγραφής στη στρατιωτική σχολή: "+str(sxolh.mysxolh)+" που κάνατε με ID: "+str(sxolh_id)+". \nΜπορείτε να ελέγξετε την κατάσταση της αίτησης σας στο <Οι αιτήσεις μου> ",
+                request.user.email,
+                [sxolh.email],
+                fail_silently=False,)
             messages.success(request,"Successfully Edited Application")
             return HttpResponseRedirect(reverse("edit_sxolh",kwargs={"sxolh_id":sxolh_id}))
         except:

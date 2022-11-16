@@ -26,6 +26,8 @@ def Home(request):
 
 def role_mapping_function(request):
     flaguser=None
+    
+
     try:
         flaguser=MyRoles.objects.get(useremail=request.user.email)
         print(flaguser.userrole)
@@ -43,7 +45,8 @@ def role_mapping_function(request):
             return userrole
         except Exception as e:
             print(e) 
-                    
+
+
         role_dict=str(request.user.oidc_profile.realm.client.openid_api_client.userinfo(
             token=request.user.oidc_profile.access_token)['role'])
 

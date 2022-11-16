@@ -15,7 +15,17 @@
         }
         </script>
 
-   
+        <script>
+            function validateForm() {
+
+          var w = document.forms["myForm"]["status"].value
+          var x = document.forms["myForm"]["number_stratopedou"].value
+          if (w == "Pass" && x == "") {
+          alert("Παρακαλώ επιλέξτε νομό για την ομαλή επεξεργασία της αίτησης!");
+          return false;
+          }
+          }
+          </script>
     	<!-- meta charec set -->
         <meta charset="utf-8">
 		<!-- Always force latest IE rendering engine or request Chrome Frame -->
@@ -121,7 +131,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" name="myForm" action="/edit_application_save" method="post" enctype="multipart/form-data">
+              <form role="form" name="myForm" action="/edit_application_save" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                   {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
@@ -176,6 +186,7 @@
                   <div class="form-group">
                     <label style="color: black;">Νομός στρατοπέδου</label>
                     <select class="form-control" id="nomos_stratopedou" onInput='myFunction()' name="nomos_stratopedou" style="color: black;">
+                      <option hidden selected>Επιλέξτε νομό...</option>
                       <option style="color: black;">ΑΡΓΟΛΙΔΑΣ</option>
                       <option style="color: black;">ΑΡΚΑΔΙΑΣ</option>
                       <option style="color: black;">ΑΤΤΙΚΗΣ</option>
