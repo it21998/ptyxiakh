@@ -58,9 +58,8 @@
 		<!-- Page Title -->
         <title>Stratologia</title>		
 		<!-- Meta Description -->
-        <meta name="description" content="Blue One Page Creative HTML5 Template">
         <meta name="keywords" content="one page, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
-        <meta name="author" content="Muhammad Morshed">
+        <meta name="author" content="21998">
 		<!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -99,7 +98,7 @@
         <!-- 
         Fixed Navigation
         ==================================== -->
-        <header id="navigation" class="navbar-fixed-top navbar" style="background-color:rgb(20, 179, 152);">
+        <header  class="navbar-fixed-top navbar" style="background-color:rgb(20, 179, 152);">
             <div class="container">
                 <div class="navbar-header">
                     <!-- responsive nav button -->
@@ -148,6 +147,7 @@
 
 
     <!-- Main content -->
+    {% if flag == "False" %}
     <section class="content">
       <div class="container">
           <div class="row">
@@ -246,6 +246,115 @@
           </div>
       </div>
     </section>
+    {% endif %} 
+
+    {% if flag == "True" %} 
+    <section class="content">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header" style="height: 50px">
+                <h3 class="card-title" style="color: rgb(0, 0, 0);">Αίτηση Εγγραφής σε Στρατιωτική Σχολή</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              {% for sxolh in sxoles %}
+              {% if sxolh.status == "Pass" or sxolh.status == "pending" %}
+                <div class="card-body">
+                  <div id = 'nope' class="jumbotron">
+                    <p class="lead" style="color: black;">Παρακάτω βλέπετε την προσωπική σας αίτηση εγγραφής σε Στρατιωτική Σχολή.</p>
+                    <p class="lead" style="color: black;">Η συμπλήρωση νέας αίτησης εγγραφής σε Στρατιωτική Σχολή επιτρέπεται αποκλειστικά ύστερα από απόρριψη της ήδη υπάρχουσας!</p>
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);">Όνομα</label>
+                    <input type="text" class="form-control" readonly="readonly" value={{sxolh.first_name}} name="first_name">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);">Επώνυμο</label>
+                    <input type="text" class="form-control" readonly="readonly" value="{{sxolh.last_name}}" name="last_name">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Email</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{sxolh.email}}" name="email">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Ηλικία</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{sxolh.age}}" name="age">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >ΑΦΜ</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{sxolh.AFM}}" name="AFM">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >ΑΜΚΑ</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{sxolh.AMKA}}" name="AMKA">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Τηλέφωνο επικοινωνίας</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{sxolh.communication}}" name="communication">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Επιλεγμένη Σχολή</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{sxolh.mysxolh}}" name="mysxolh">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >Status</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{sxolh.status}}" name="mysxolh">
+                  </div>
+                  <div class="form-group">
+                    <label style="color: rgb(0, 0, 0);" >ID Αίτησης Εγγραφής σε Στρατιωτική Σχολή</label>
+                    <input type="text" readonly="readonly" class="form-control"  value="{{sxolh.id}}" name="mysxolh">
+                  </div>
+                  <div class="form-group">
+                    <label for="formFile" class="form-label" style="color: rgb(0, 0, 0);">Ηλεκτρονικό έγγραφο για εγγραφή στη σχολή</label>
+                    <p >
+                      <a href="/media/{{ sxolh.formFile }}" target="_blank" class="btn btn-primary" style="color: black;width: 460px;background-color: rgb(20, 179, 152);">Link για το ηλεκτρονικό έγγραφο εγγραφής στη σχολή επιλογής</a>
+                    </p>
+                  </div>
+                  
+                
+                
+                  
+                   
+
+                </div>
+                {% endif %} 
+                {% endfor %}
+                <!-- /.card-body -->
+
+               
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script src="{% static "brandi_custom_page/js/jquery-1.11.1.min.js" %}"></script>
 		<!-- Single Page Nav -->
         <script src="{% static "brandi_custom_page/js/jquery.singlePageNav.min.js" %}"></script>
@@ -264,8 +373,6 @@
 		<!-- Contact form validation -->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
-		<!-- Google Map -->
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<!-- jquery easing -->
         <script src="{% static "brandi_custom_page/js/jquery.easing.min.js" %}"></script>
 		<!-- jquery easing -->

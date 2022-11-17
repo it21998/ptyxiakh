@@ -10,13 +10,24 @@ from demo.views import role_mapping_function
 
 
 def soldier_home(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('http://127.0.0.1:8000')
     userrole=role_mapping_function(request)
     return render(request,"soldier_templates/base_template.html",{"userrole":userrole})
 
 
 def add_application(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('http://127.0.0.1:8000')
+
+    applications=Aithsh.objects.filter(email=request.user.email)    
+    flag="False"
+    for i in applications:
+        if i.status == "pending" or i.status == "Pass":
+            flag="True"
+            break
     userrole=role_mapping_function(request)
-    return render(request,"soldier_templates/soldier_add_application_template.html",{"userrole":userrole})
+    return render(request,"soldier_templates/soldier_add_application_template.html",{"userrole":userrole,"flag":flag,"applications":applications})
 
 
 
@@ -57,6 +68,8 @@ def add_application_save(request):
 
             
 def add_diakoph(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('http://127.0.0.1:8000')
     userrole=role_mapping_function(request)
     applications=Aithsh.objects.all()
     return render(request,"soldier_templates/soldier_add_diakoph_template.html",context={'applications':applications,'userrole':userrole})
@@ -98,6 +111,8 @@ def add_diakoph_save(request):
 
 
 def add_apografi(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('http://127.0.0.1:8000')
     userrole=role_mapping_function(request)
     applications=Aithsh.objects.all()
     return render(request,"soldier_templates/soldier_add_apografi_template.html",context={'applications':applications,'userrole':userrole})
@@ -150,8 +165,17 @@ def add_apografi_save(request):
 
 
 def add_sxolh(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('http://127.0.0.1:8000')
+
+    sxoles=Sxolh.objects.filter(email=request.user.email)    
+    flag="False"
+    for i in sxoles:
+        if i.status == "pending" or i.status == "Pass":
+            flag="True"
+            break    
     userrole=role_mapping_function(request)
-    return render(request,"soldier_templates/soldier_add_sxolh_template.html",{"userrole":userrole})
+    return render(request,"soldier_templates/soldier_add_sxolh_template.html",{"userrole":userrole,"flag":flag,"sxoles":sxoles})
 
 
 
@@ -191,6 +215,8 @@ def add_sxolh_save(request):
 
 
 def check_katatajh(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('http://127.0.0.1:8000')
     userrole=role_mapping_function(request)
     applications=Aithsh.objects.all()
     return render(request,"soldier_templates/soldier_katatajh_template.html",context={'applications':applications,'userrole':userrole})
@@ -198,6 +224,8 @@ def check_katatajh(request):
 
 
 def check_myaithseis(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('http://127.0.0.1:8000')
     userrole=role_mapping_function(request)
     applications=Aithsh.objects.all()
     anaboles=Diakoph.objects.all()
