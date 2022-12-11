@@ -5,16 +5,16 @@
         <title>Stratologia</title>
      <meta charset="UTF-8" />
      {% if not user.is_authenticated %}
-     <meta http-equiv="refresh" content="1; URL=http://127.0.0.1:8000/keycloak/login" />
+     <meta http-equiv="refresh" content="1; URL=http://stratologia-django.cloudns.ph/keycloak/login" />
      {% endif %}
      {% if userrole == "soldier" %}
-     <meta http-equiv="refresh" content="1; URL=http://127.0.0.1:8000/soldier_home" />
+     <meta http-equiv="refresh" content="1; URL=http://stratologia-django.cloudns.ph/soldier_home" />
      {% endif %}
      {% if userrole == "staff" %}
-     <meta http-equiv="refresh" content="1; URL=http://127.0.0.1:8000/staff_home" />
+     <meta http-equiv="refresh" content="1; URL=http://stratologia-django.cloudns.ph/staff_home" />
      {% endif %}
      {% if userrole == "admin" %}
-     <meta http-equiv="refresh" content="1; URL=http://127.0.0.1:8080/auth/admin/demo/console" />
+     <meta http-equiv="refresh" content="1; URL=http://35.189.82.129:31945/auth/admin/demo/console/" />
      {% endif %}
    </head>   
 </html>

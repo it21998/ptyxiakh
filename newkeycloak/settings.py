@@ -114,7 +114,8 @@ AUTH_PASSWORD_VALIDATORS = [
 KEYCLOAK_OIDC_PROFILE_MODEL = 'django_keycloak.OpenIdConnectProfile'
 
 AUTHENTICATION_BACKENDS = [
-    'django_keycloak.auth.backends.KeycloakAuthorizationCodeBackend',
+
+    'django_keycloak.auth.backends.KeycloakAuthorizationCodeBackend'
 ]
 
 LOGIN_URL = 'keycloak_login'
