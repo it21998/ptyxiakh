@@ -81,7 +81,7 @@ def GetUserDetails(request):
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('http://127.0.0.1:8000/keycloak/login')
+    return HttpResponseRedirect('http://stratologia-django.cloudns.ph/keycloak/login')
     
 
 

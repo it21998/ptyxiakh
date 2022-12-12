@@ -12,14 +12,14 @@ from demo.views import role_mapping_function
 
 def staff_home(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('http://127.0.0.1:8000')
+        return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
     userrole=role_mapping_function(request)
     return render(request,"staff_templates/base_template.html",{"userrole":userrole})
 
 
 def check_applications(request):
         if not request.user.is_authenticated:
-          return HttpResponseRedirect('http://127.0.0.1:8000')
+          return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
         userrole=role_mapping_function(request)
         applications=Aithsh.objects.all()
         return render(request,"staff_templates/staff_manage_applications.html",context={'applications':applications,'userrole':userrole})
@@ -28,7 +28,7 @@ def check_applications(request):
 
 def edit_application(request,application_id):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('http://127.0.0.1:8000')
+        return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
     userrole=role_mapping_function(request)
     applications=Aithsh.objects.get(id=application_id)
     return render(request,"staff_templates/edit_application_template.html",{"applications":applications,"id":application_id,"userrole":userrole})
@@ -64,7 +64,7 @@ def edit_application_save(request):
 
 def check_anaboles(request):
         if not request.user.is_authenticated:
-          return HttpResponseRedirect('http://127.0.0.1:8000')
+          return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
         userrole=role_mapping_function(request)
         anaboles=Diakoph.objects.all()
         return render(request,"staff_templates/staff_manage_anaboles.html",context={'anaboles':anaboles,'userrole':userrole})
@@ -73,7 +73,7 @@ def check_anaboles(request):
 
 def edit_anabolh(request,anabolh_id):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('http://127.0.0.1:8000')
+        return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
     userrole=role_mapping_function(request)
     anaboles=Diakoph.objects.get(id=anabolh_id)
     return render(request,"staff_templates/edit_anabolh_template.html",{"anaboles":anaboles,"id":anabolh_id,"userrole":userrole})
@@ -113,7 +113,7 @@ def edit_anabolh_save(request):
 
 def check_apografes(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('http://127.0.0.1:8000')
+        return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
     userrole=role_mapping_function(request)
     apografes=Apografh.objects.all()
     return render(request,"staff_templates/staff_manage_apografes.html",context={'apografes':apografes,'userrole':userrole})
@@ -122,7 +122,7 @@ def check_apografes(request):
 
 def edit_apografh(request,apografh_id):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('http://127.0.0.1:8000')
+        return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
     userrole=role_mapping_function(request)
     apografes=Apografh.objects.get(id=apografh_id)
     return render(request,"staff_templates/edit_apografh_template.html",{"apografes":apografes,"id":apografh_id,"userrole":userrole})
@@ -161,7 +161,7 @@ def edit_apografh_save(request):
 
 def check_sxoles(request):
         if not request.user.is_authenticated:
-          return HttpResponseRedirect('http://127.0.0.1:8000')
+          return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
         userrole=role_mapping_function(request)
         sxoles=Sxolh.objects.all()
         return render(request,"staff_templates/staff_manage_sxoles.html",context={'sxoles':sxoles,'userrole':userrole})
@@ -170,7 +170,7 @@ def check_sxoles(request):
 
 def edit_sxolh(request,sxolh_id):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect('http://127.0.0.1:8000')
+        return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
     userrole=role_mapping_function(request)
     sxoles=Sxolh.objects.get(id=sxolh_id)
     return render(request,"staff_templates/edit_sxolh_template.html",{"sxoles":sxoles,"id":sxolh_id,"userrole":userrole})

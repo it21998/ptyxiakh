@@ -29,6 +29,10 @@ spec:
       labels:
         app: keycloak
     spec:
+      volumes:
+        - name:  persistend-keycloak
+          persistentVolumeClaim:
+            claimName: pvc-keycloak
       containers:
         - image: quay.io/keycloak/keycloak:8.0.2
           imagePullPolicy: IfNotPresent
@@ -40,5 +44,6 @@ spec:
               value: "fake"
             - name: KEYCLOAK_PASSWORD
               value: "fakepassword"
-            
-           
+          volumeMounts:
+            - name: persistend-keycloak
+              mountPath: /opt/jboss/keycloak/standalone/data
