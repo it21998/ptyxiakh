@@ -99,22 +99,13 @@
 
 				<!-- main nav -->
                 <nav class="collapse navbar-collapse navbar-right" >
-                    <ul id="nav" class="nav navbar-nav">
-						<li class="image"> <img src="{% static "brandi_custom_page/img/user.png" %}" width="30" height="30" class="img-circle elevation-6" style=margin-top:10px; alt="User Image"></li>
-						<li class="info"><a class="d-block" style="color: rgb(255, 255, 255);">{{ user.email }}</a></li>
-                         
-                    </ul>
-                    <div style="margin-left: 120px; margin-top: 17px;">
-                      <a class="text-info" style="color: rgb(255, 255, 255);" href="{% url 'soldier_home' %}">Home</a>
-                      </div>
-                    <div style="margin-left: 200px; margin-top: -21px;">
-                      <a class="text-info" style="color: rgb(255, 255, 255);" href="{% url 'soldier_home' %}">Υπηρεσίες</a>
-                      </div>
-
-					<div style="margin-left: 280px; margin-top: -21px;">
-					<a class="text-info" style="color: rgb(255, 255, 255);" href="{% url 'keycloak_logout' %}">Logout</a>
-				</div>
-
+                  <ul  class="nav navbar-nav">
+                    <li class="current"><a href="{% url 'soldier_home' %}">Home</a></li>
+                    <li><a href="{% url 'soldier_home' %}">Υπηρεσίες</a></li>
+                    <li class="image"> <img src="{% static "brandi_custom_page/img/user.png" %}" width="30" height="30" class="img-circle elevation-6" style=margin-top:10px; alt="User Image"></li>
+                    <li class="info"><a class="d-block" style="color: rgb(255, 255, 255);">{{ user.email }}</a></li>
+                    <li class="info"><a class="text-info" style="color: #ffffff;" href="{% url 'keycloak_logout' %}">Logout</a></li>
+                </ul>
 
 
                 </nav>

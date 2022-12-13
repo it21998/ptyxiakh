@@ -113,7 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 KEYCLOAK_OIDC_PROFILE_MODEL = 'django_keycloak.OpenIdConnectProfile'
 
-
+AUTHENTICATION_BACKENDS = [
+    'django_keycloak.auth.backends.KeycloakAuthorizationCodeBackend'
+]
 
 LOGIN_URL = 'keycloak_login'
 KEYCLOAK_PERMISSIONS_METHOD = 'role'
@@ -138,7 +140,7 @@ STATIC_URL = '/static/'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = '127.0.0.1'
+EMAIL_HOST = 'mailhog'
 EMAIL_PORT = 1025
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

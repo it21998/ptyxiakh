@@ -33,6 +33,9 @@ spec:
         - name:  persistend-keycloak
           persistentVolumeClaim:
             claimName: pvc-keycloak
+        - name:  persistend-theme
+          persistentVolumeClaim:
+            claimName: pvc-theme  
       containers:
         - image: quay.io/keycloak/keycloak:8.0.2
           imagePullPolicy: IfNotPresent
@@ -47,3 +50,7 @@ spec:
           volumeMounts:
             - name: persistend-keycloak
               mountPath: /opt/jboss/keycloak/standalone/data
+            - name: persistend-theme
+              mountPath: /opt/jboss/keycloak/themes/Cyboinsect  
+            
+
