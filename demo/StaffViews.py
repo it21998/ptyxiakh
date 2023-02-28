@@ -50,10 +50,11 @@ def edit_application_save(request):
 
             send_mail(
                 'Έλεγχος Αίτησης Στράτευσης ',
-                "Ελέγθηκε απο τον υπεύθυνο η αίτηση στράτευσης που κάνατε με ID: "+str(application_id)+". \nΜπορείτε να ελέγξετε την κατάσταση της αίτησης σας στο <Οι αιτήσεις μου>.\nΣε περίπτωση επιβεβαίωσης στης αίτησης μεταβείτε στο <Κατάταξη> \nγια να λάβετε πληροφορίες για την κατάταξη σας! ",
+                "Ελέγθηκε απο τον υπεύθυνο η αίτηση στράτευσης που κάνατε με ID: "+str(application_id)+". \nΜπορείτε να ελέγξετε την κατάσταση της αίτησης σας στο <Οι αιτήσεις μου>.\nΣε περίπτωση επιβεβαίωσης της αίτησης μεταβείτε στο <Κατάταξη> \nγια να λάβετε πληροφορίες για την κατάταξη σας! ",
                 request.user.email,
                 [application.email],
                 fail_silently=False,)
+                
             messages.success(request,"Successfully Edited Application")
             return HttpResponseRedirect(reverse("edit_application",kwargs={"application_id":application_id}))
         except:
@@ -193,6 +194,7 @@ def edit_sxolh_save(request):
                 request.user.email,
                 [sxolh.email],
                 fail_silently=False,)
+                
             messages.success(request,"Successfully Edited Application")
             return HttpResponseRedirect(reverse("edit_sxolh",kwargs={"sxolh_id":sxolh_id}))
         except:

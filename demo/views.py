@@ -13,14 +13,54 @@ from django.urls import reverse
 from django.contrib import messages
 from demo.models import MyRoles
 
+from django_keycloak.models import Nonce
+from django.http.response import (
+    HttpResponseBadRequest,
+    HttpResponseServerError,
+    HttpResponseRedirect
+)
+from django_keycloak.services.oidc_profile import get_remote_user_model
+from django_keycloak.auth import remote_user_login
+
 
 def Home(request):
-    try:
+    if not request.user.is_authenticated:
+        try:
+            if 'error' in request.GET:
+                return HttpResponseServerError(request.GET['error'])
+
+            if 'code' not in request.GET and 'state' not in request.GET:
+                flag=1
+                return render(request,"home.html",{"flag":flag})
+
+            if 'oidc_state' not in request.session \
+                    or request.GET['state'] != request.session['oidc_state']:
+                # Missing or incorrect state; login again.
+                return HttpResponseRedirect(reverse('keycloak_login'))
+
+            nonce = Nonce.objects.get(state=request.GET['state'])
+
+            user = authenticate(request=request,
+                                code=request.GET['code'],
+                                redirect_uri=nonce.redirect_uri)
+
+            RemoteUserModel = get_remote_user_model()
+            if isinstance(user, RemoteUserModel):
+                remote_user_login(request, user)
+            else:
+                login(request, user)
+
+            nonce.delete()
+            
+            userrole=role_mapping_function(request)
+            return HttpResponseRedirect('http://stratologia-django.cloudns.ph')
+        except Exception as e:
+            print(e)
+            userrole="0"
+    else:
         userrole=role_mapping_function(request)
-    except Exception as e:
-        print(e)
-        userrole="0"
-    return render(request,"home.html",{"userrole":userrole})
+        return render(request,"home.html",{"userrole":userrole})
+
 
 
 

@@ -163,7 +163,7 @@
                         {% if message.tags == 'error' %}
                         <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
                         {% endif %}
-                        {% if message.tags == 'success' %}
+                        {% if message.tags == 'success' and sxoles.status != "pending" %}
                         <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
                         {% endif %}
                         {% endfor %}

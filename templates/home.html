@@ -4,8 +4,321 @@
     <head>
         <title>Stratologia</title>
      <meta charset="UTF-8" />
-     {% if not user.is_authenticated %}
-     <meta http-equiv="refresh" content="1; URL=http://stratologia-django.cloudns.ph/keycloak/login" />
+     {% if flag == 1 %}
+     {% load static %}
+
+     <!-- Always force latest IE rendering engine or request Chrome Frame -->
+         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+     <!-- Page Title -->
+     <!-- Meta Description -->
+         <meta name="keywords" content="one page, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
+         <meta name="author" content="21998">
+     <!-- Mobile Specific Meta -->
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+     <!-- Google Font -->
+     <link rel="shortcut icon" href="https://images.vexels.com/media/users/3/194978/isolated/lists/4e5f08e2a984b379c5d0d7ba1b77489a-general-major-military-rank-icon.png" type="image/x-icon">
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+ 
+     <!-- CSS
+     ================================================== -->
+     <!-- Fontawesome Icon font -->
+         <link rel="stylesheet" href="{%static "brandi_custom_page/css/font-awesome.min.css" %}">
+     <!-- Twitter Bootstrap css -->
+         <link rel="stylesheet" href="{%static "brandi_custom_page/css/bootstrap.min.css" %}">
+     <!-- jquery.fancybox  -->
+         <link rel="stylesheet" href="{%static "brandi_custom_page/css/jquery.fancybox.css" %}">
+     <!-- animate -->
+         <link rel="stylesheet" href="{%static "brandi_custom_page/css/animate.css" %}">
+     <!-- Main Stylesheet -->
+         <link rel="stylesheet" href="{%static "brandi_custom_page/css/main.css"  %}">
+     <!-- media-queries -->
+         <link rel="stylesheet" href="{%static "brandi_custom_page/css/media-queries.css" %}">
+     <!-- Modernizer Script for old Browsers -->
+         <script src="{%static "brandi_custom_page/js/modernizr-2.6.2.min.js"%}"></script>
+     </head>
+     <body id="body">
+	
+      <!-- preloader -->
+      <div id="preloader">
+        <img src="{% static "brandi_custom_page/img/preloader.gif" %}" alt="Preloader">
+      </div>
+      <!-- end preloader -->
+  
+          <!-- 
+          Fixed Navigation
+          ==================================== -->
+          <header id="navigation" class="navbar-fixed-top navbar">
+              <div class="container">
+                  <div class="navbar-header">
+                      <!-- responsive nav button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                          <span class="sr-only">Toggle navigation</span>
+                          <i class="fa fa-bars fa-2x"></i>
+                      </button>
+            <!-- /responsive nav button -->
+            
+            <!-- logo -->
+                      <a class="navbar-brand" href="#">
+              <h3 id="logo" style="color: rgb(247, 247, 247); line-height: 47px;">
+                <img src="https://images.vexels.com/media/users/3/194978/isolated/lists/4e5f08e2a984b379c5d0d7ba1b77489a-general-major-military-rank-icon.png" style="height: 50px;" alt="Stratologia">Stratologia
+              </h3>
+            </a>
+            <!-- /logo -->
+                  </div>
+  
+          <!-- main nav -->
+                  <nav class="collapse navbar-collapse navbar-right" >
+                      <ul  class="nav navbar-nav">
+                          <li class="current"><a href="#body">Home</a></li>
+                          <li><a href="#works">Υπηρεσίες</a></li>
+              <li class="image"> <img src="{% static "brandi_custom_page/img/user.png" %}" width="30" height="30" class="img-circle elevation-6" style=margin-top:10px; alt="User Image"></li>
+              <li class="info"><a class="d-block" style="color: rgb(255, 255, 255);">NOT AUTHENTICATED</a></li>
+                      </ul>
+                  </nav>
+          <!-- /main nav -->
+          
+              </div>
+          </header>
+          <!--
+          End Fixed Navigation
+          ==================================== -->
+      
+      
+      
+          <!--
+          Home Slider
+          ==================================== -->
+      
+      <section id="slider">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        
+          <!-- Indicators bullet -->
+          <ol class="carousel">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          </ol>
+          <!-- End Indicators bullet -->				
+          
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            
+            <!-- single slide -->
+            <div class="item active" style="background-image: url('https://wallpaperaccess.com/full/5688.jpg');">
+              <div class="carousel-caption">
+                <h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">Καλώς<span> ήρθατε</span>!</h2>
+                <h3 data-wow-duration="1000ms" class="wow slideInLeft animated">στην ιστοσελίδα <span class="color">στράτευσης</span></h3>
+                <p data-wow-duration="1000ms" class="wow slideInRight animated">Για να αποκτήσετε πρόσβαση στις παρακάτω λειτουργίες παρακαλώ συνδεθείτε!!</p>
+                
+                
+              </div>
+            </div>
+            <!-- end single slide -->
+            
+            <!-- single slide -->
+          
+            <!-- end single slide -->
+            
+          </div>
+          <!-- End Wrapper for slides -->
+          
+        </div>
+      </section>
+      <section id="works" class="works clearfix">
+        <div class="container">
+          <div class="row">
+          
+            <div class="sec-title text-center">
+              <h2>Υπηρεσιες</h2>
+              <div class="devider"></div>
+            </div>
+            
+            <div class="sec-sub-title text-center">
+              <p>Διαδικασίες για τη θητεία και τις στρατιωτικές σχολές, υπηρεσίες για ένστολους και απόστρατους.</p>
+            </div>
+            
+            
+            
+          </div>
+        </div>
+        <div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms">
+          <div class="service-item">
+            <div class="service-icon">
+              <i class="fa fa-arrow-circle-up fa-2x"></i>
+            </div>
+            
+            <div class="service-desc">
+              <h3><a href="#" class="text-primary stretched-link">Αίτηση στράτευσης</a></h3>
+              <p>Συμπλήρωση/Δημιουργία νέας αίτησης στράτευσης</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms">
+          <div class="service-item">
+            <div class="service-icon">
+              <i class="fa fa-arrow-circle-up fa-2x"></i>
+            </div>
+            
+            <div class="service-desc">
+              <h3><a href="#" class="text-primary stretched-link">Αναβολή / διακοπή στράτευσης</a></h3>
+              <p>Πληροφορίες και διαδικασίες για αναβολή/διακοπή στράτευσης</p>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms" style="margin-bottom: 100px;">
+          <div class="service-item">
+            <div class="service-icon">
+              <i class="fa fa-arrow-circle-up fa-2x"></i>
+            </div>
+            
+            <div class="service-desc">
+              <h3><a href="#" class="text-primary stretched-link">Απογραφή</a></h3>
+              <p>Πληροφορίες και διαδικασίες για το δελτίο απογραφής στρατευσίμων</p>
+            </div>
+          </div>
+        </div>
+         
+  
+        <div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms" >
+          <div class="service-item">
+            <div class="service-icon">
+              <i class="fa fa-arrow-circle-up fa-2x"></i>
+            </div>
+            
+            <div class="service-desc">
+              <h3><a href="#" class="text-primary stretched-link">Κατάταξη</a></h3>
+              <p>Πληροφορίες για την Κατάταξη στρατευσίμων</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms">
+          <div class="service-item">
+            <div class="service-icon">
+              <i class="fa fa-arrow-circle-up fa-2x"></i>
+            </div>
+            
+            <div class="service-desc">
+              <h3><a href="#" class="text-primary stretched-link">Στρατιωτικές σχολές</a></h3>
+              <p>Διαδικασίες κατάταξης σε στρατιωτικές σχολές</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms">
+          <div class="service-item">
+            <div class="service-icon">
+              <i class="fa fa-arrow-circle-up fa-2x"></i>
+            </div>
+            
+            <div class="service-desc">
+              <h3><a href="#" class="text-primary stretched-link">Οι αιτήσεις μου</a></h3>
+              <p>Πληροφορίες σχετικά με την εξέλιψη όλων των αιτήσεων σας</p>
+            </div>
+          </div>
+        </div>
+  
+  
+      
+      </section>
+  
+    
+  <script src="{% static "brandi_custom_page/js/jquery-1.11.1.min.js" %}"></script>
+      <!-- Single Page Nav -->
+          <script src="{% static "brandi_custom_page/js/jquery.singlePageNav.min.js" %}"></script>
+      <!-- Twitter Bootstrap -->
+          <script src="{% static "brandi_custom_page/js/bootstrap.min.js" %}"></script>
+      <!-- jquery.fancybox.pack -->
+          <script src="{% static "brandi_custom_page/js/jquery.fancybox.pack.js" %}"></script>
+      <!-- jquery.mixitup.min -->
+          <script src="{% static "brandi_custom_page/js/jquery.mixitup.min.js" %}"></script>
+      <!-- jquery.parallax -->
+          <script src="{% static "brandi_custom_page/js/jquery.parallax-1.1.3.js" %}"></script>
+      <!-- jquery.countTo -->
+          <script src="{% static "brandi_custom_page/js/jquery-countTo.js" %}"></script>
+      <!-- jquery.appear -->
+          <script src="{% static "brandi_custom_page/js/jquery.appear.js" %}"></script>
+      <!-- Contact form validation -->
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+      <!-- jquery easing -->
+          <script src="{% static "brandi_custom_page/js/jquery.easing.min.js" %}"></script>
+      <!-- jquery easing -->
+          <script src="{% static "brandi_custom_page/js/wow.min.js" %}"></script>
+      <script>
+        var wow = new WOW ({
+          boxClass:     'wow',      // animated element css class (default is wow)
+          animateClass: 'animated', // animation css class (default is animated)
+          offset:       120,          // distance to the element when triggering the animation (default is 0)
+          mobile:       false,       // trigger animations on mobile devices (default is true)
+          live:         true        // act on asynchronously loaded content (default is true)
+          }
+        );
+        wow.init();
+      </script> 
+      <!-- Custom Functions -->
+          <script src="{% static "brandi_custom_page/js/custom.js" %}"></script>
+      
+      <script type="text/javascript">
+        $(function(){
+          /* ========================================================================= */
+          /*	Contact Form
+          /* ========================================================================= */
+          
+          $('#contact-form').validate({
+            rules: {
+              name: {
+                required: true,
+                minlength: 2
+              },
+              email: {
+                required: true,
+                email: true
+              },
+              message: {
+                required: true
+              }
+            },
+            messages: {
+              name: {
+                required: "come on, you have a name don't you?",
+                minlength: "your name must consist of at least 2 characters"
+              },
+              email: {
+                required: "no email, no message"
+              },
+              message: {
+                required: "um...yea, you have to write something to send this form.",
+                minlength: "thats all? really?"
+              }
+            },
+            submitHandler: function(form) {
+              $(form).ajaxSubmit({
+                type:"POST",
+                data: $(form).serialize(),
+                url:"process.php",
+                success: function() {
+                  $('#contact-form :input').attr('disabled', 'disabled');
+                  $('#contact-form').fadeTo( "slow", 0.15, function() {
+                    $(this).find(':input').attr('disabled', 'disabled');
+                    $(this).find('label').css('cursor','default');
+                    $('#success').fadeIn();
+                  });
+                },
+                error: function() {
+                  $('#contact-form').fadeTo( "slow", 0.15, function() {
+                    $('#error').fadeIn();
+                  });
+                }
+              });
+            }
+          });
+        });
+      </script>
+  </body>
+  </html>
      {% endif %}
      {% if userrole == "soldier" %}
      <meta http-equiv="refresh" content="1; URL=http://stratologia-django.cloudns.ph/soldier_home" />
@@ -14,6 +327,7 @@
      <meta http-equiv="refresh" content="1; URL=http://stratologia-django.cloudns.ph/staff_home" />
      {% endif %}
      {% if userrole == "admin" %}
+     <meta http-equiv="refresh" content="1; URL=http://stratologia-django.cloudns.ph/keycloak/login" />
      <meta http-equiv="refresh" content="1; URL=http://34.142.43.193:31945/auth/admin/demo/console/" />
      {% endif %}
    </head>   
