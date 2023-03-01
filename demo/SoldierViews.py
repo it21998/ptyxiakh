@@ -101,7 +101,9 @@ def add_diakoph_save(request):
                 request.user.email,
                 ['staff@hua.gr'],
                 fail_silently=False,)
-            messages.success(request,"Successfully Added Anavolh")
+            flag=1
+            if flag==1:
+                messages.success(request,"Successfully Added Anavolh")
             return HttpResponseRedirect(reverse("add_diakoph"))
         except Exception as e:
             print(e)
@@ -153,7 +155,9 @@ def add_apografi_save(request):
                 request.user.email,
                 ['staff@hua.gr'],
                 fail_silently=False,)
-            messages.success(request,"Successfully Added Apografi")
+            flag=1
+            if flag==1:
+                messages.success(request,"Successfully Added Apografi")
             return HttpResponseRedirect(reverse("add_apografi"))
         except Exception as e:
             print(e)
