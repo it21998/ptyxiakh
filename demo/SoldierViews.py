@@ -234,4 +234,5 @@ def check_myaithseis(request):
     applications=Aithsh.objects.all()
     anaboles=Diakoph.objects.all()
     sxoles=Sxolh.objects.all()
-    return render(request,"soldier_templates/soldier_manage_applications_template.html",context={'applications':applications,'anaboles':anaboles,'sxoles':sxoles,'userrole':userrole})
+    apografes=Apografh.objects.all()
+    return render(request,"soldier_templates/soldier_manage_applications_template.html",context={'applications':applications,'anaboles':anaboles,'sxoles':sxoles,'userrole':userrole,'apografes':apografes})

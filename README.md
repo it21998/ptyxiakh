@@ -76,5 +76,13 @@ helm install konga ./  -f values.yaml
 ```
 # Optional Keycloak Theme
 ```bash
-microk8s.kubectl cp Cyboinsect <<Keycloak_pod_name>>:opt/jboss/keycloak/themes -c keycloak
+microk8s.kubectl cp customLoginPage <<Keycloak_pod_name>>:opt/jboss/keycloak/themes -c keycloak
+```
+# Useful links
+```bash
+http://34.142.27.123:30175  -   Keycloak
+http://34.142.27.123:32080/django  -   Django app
+http://stratologia-django.cloudns.ph    -   Django app ingress
+http://34.142.27.123:31769  -   Konga
+http://34.142.27.123:32055  -   Mailhog
 ```

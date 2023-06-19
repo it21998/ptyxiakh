@@ -295,6 +295,71 @@
           </div>
         </div>
       </div>
+      <div class="sec-title text-center">
+        <div class="devider"></div>
+      </div>
+    </section>
+
+
+    <section class="content" style="margin-top: -100px;">
+      <div class="container">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header" style="height: 55px;">
+                <h3 class="card-title"  style="color: black;margin-left: 330px;">Οι Προσωπικές σας αιτήσεις απογραφής</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+
+                   
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th style="color: black;">ID</th>
+                      <th style="color: black;">Ονοματεπώνυμο</th>
+                      <th style="color: black;">Email</th>
+                      <th style="color: black;" >ΑΦΜ</th>
+                      <th style="color: black;">ΑΔΤ</th>
+                      <th style="color: black;">Τηλ. επικοινωνίας</th>
+                      <th style="color: black;">Κατάταξη</th>
+                      <th style="color: black;" >Status</th>
+                      <th style="color: black;">Date Created</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for apografh in apografes %}
+                  {% if apografh.email == user.email %}
+
+                    <tr>
+                      <td style="color: black;">{{ apografh.id }}</td>
+                      <td style="color: black;">{{ apografh.first_name }} {{apografh.last_name}}</td>
+                      <td style="color: black;">{{ apografh.email }}</td>
+                      <td style="color: black;">{{ apografh.AFM }}</td>
+                      <td style="color: black;">{{ apografh.id_number }}</td>
+                      <td style="color: black;">{{ apografh.communication }}</td>
+                      <td style="color: black;">{{ apografh.katatajh }}</td>
+                      <td style="background-color:rgb(20, 179, 152);color: black;" >{{ apografh.status }}</td>
+                      <td style="color: black;">{{ apografh.created_at }}</td>
+                    </tr>
+                    {% endif %}
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
      
     </section>
 

@@ -51,6 +51,6 @@ spec:
             - name: persistend-keycloak
               mountPath: /opt/jboss/keycloak/standalone/data
             - name: persistend-theme
-              mountPath: /opt/jboss/keycloak/themes/Cyboinsect  
+              mountPath: /opt/jboss/keycloak/themes/customLoginPage  
             
 
